@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Company, type: :model do
-  describe "実際に保存してみる" do
+  context "実際に保存してみる" do
     it "有効な物は保存可能か？" do
       expect(build(:company)).to be_valid
     end
@@ -55,6 +55,15 @@ RSpec.describe Company, type: :model do
     end
     it "電話番号11桁" do
       expect(build(:company, email: "01234567890")).to be_invalid
+    end
+    it "企業名141文字" do
+      expect(build(:company, company_name: "a" * 141)).to be_invalid
+    end
+    it "企業名21文字" do
+      expect(build(:company, responsible_name: "a" * 21)).to be_invalid
+    end
+    it "企業名49文字" do
+      expect(build(:company, address: "a" * 49)).to be_invalid
     end
   end
 end

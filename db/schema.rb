@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_012517) do
     t.string "address", null: false
     t.string "email", null: false
     t.string "phone_number", null: false
-    t.boolean "usage_status", default: true, null: false
+    t.boolean "usage_status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 2021_04_04_012517) do
     t.string "image_id"
     t.string "department", null: false
     t.date "joining_date", null: false
-    t.boolean "admin", default: false, null: false
-    t.boolean "enrollment_status", default: true, null: false
+    t.boolean "admin", default: false
+    t.boolean "enrollment_status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_employees_on_company_id"
@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 2021_04_04_012517) do
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
     t.text "content", null: false
-    t.text "question", null: false
-    t.integer "schedule_status", default: 0, null: false
-    t.boolean "comment_status", default: false, null: false
+    t.text "question"
+    t.integer "schedule_status", default: 0
+    t.boolean "comment_status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_schedules_on_employee_id"

@@ -34,11 +34,11 @@ class DeviseCreateEmployees < ActiveRecord::Migration[5.2]
 
       t.references :company, foreign_key: true
       t.string :name, null: false
-      t.string :image_id
+      t.string :image_id, null: false, default: ""
       t.string :department, null: false
       t.date :joining_date, null: false
-      t.boolean :admin, null: false, default: false
-      t.boolean :enrollment_status, null: false, default: true
+      t.boolean :admin, default: false
+      t.boolean :enrollment_status, default: true
 
 
       t.timestamps null: false

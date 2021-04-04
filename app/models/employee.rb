@@ -1,4 +1,9 @@
 class Employee < ApplicationRecord
+  validates :name, presence: true, length: { in: 1..20 }
+  validates :department, presence: true, length: { in: 1..20 }
+  validates :joining_date, presence: true
+  validates :admin, inclusion: { in: [true, false] }
+  validates :enrollment_status, inclusion: { in: [true, false] }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
