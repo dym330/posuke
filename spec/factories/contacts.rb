@@ -5,5 +5,6 @@ FactoryBot.define do
     responsible_name { "テスト三郎" }
     email { "test@test.com" }
     message { "検討しております" }
+    phone_number { "0123456789" }
   end
 end

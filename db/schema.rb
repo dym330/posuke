@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_012517) do
+ActiveRecord::Schema.define(version: 2021_04_04_101352) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_012517) do
     t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number", null: false
   end
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -53,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_012517) do
     t.datetime "remember_created_at"
     t.bigint "company_id"
     t.string "name", null: false
-    t.string "image_id"
+    t.string "image_id", default: "", null: false
     t.string "department", null: false
     t.date "joining_date", null: false
     t.boolean "admin", default: false
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_012517) do
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
     t.text "content", null: false
-    t.text "question"
+    t.string "question", default: ""
     t.integer "schedule_status", default: 0
     t.boolean "comment_status", default: false
     t.datetime "created_at", null: false

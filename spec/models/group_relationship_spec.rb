@@ -16,8 +16,8 @@ RSpec.describe GroupRelationship, type: :model do
     it "従業員IDの空白" do
       expect(build(:group_relationship, employee_id: "")).to be_invalid
     end
-    it "予定IDの空白" do
-      expect(build(:group_relationship, schedule_id: "")).to be_invalid
+    it "グループIDの空白" do
+      expect(build(:group_relationship, group_id: "")).to be_invalid
     end
   end
 end

@@ -4,7 +4,7 @@ class Schedule < ApplicationRecord
   validates :end_time, presence: true
   validate :start_end_check
   validates :content, presence: true, length: { in: 1..1000 }
-  validates :question
+  validates :question, length: { maximum: 1000 }
   validates :schedule_status, presence: true
   validates :comment_status, inclusion: { in: [true, false] }
   has_many :schedule_comments, dependent: :destroy
