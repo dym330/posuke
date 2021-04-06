@@ -11,7 +11,10 @@ class Schedule < ApplicationRecord
   has_many :schedule_favorites, dependent: :destroy
   belongs_to :employee
 
+  # nilデータでは、>が使えないため、nil?を最初に確認している
   def start_end_check
-    errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time
+    unless self.start_time.nil? && self.end_time.nil?
+      errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time
+    end
   end
 end

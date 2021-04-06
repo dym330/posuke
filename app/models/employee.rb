@@ -14,4 +14,6 @@ class Employee < ApplicationRecord
   has_many :schedule_favorites, dependent: :destroy
   has_many :group, dependent: :destroy
   has_many :group_relationships
+
+  
 end
