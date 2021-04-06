@@ -1,0 +1,26 @@
+<div class="title">
+  <h2><i class="far fa-building icon-color-blue"></i>企業詳細</h2>
+</div>
+<div class="row">
+  <div class="col-sm-10 px-sm-0 mx-auto">
+    <h3>
+      <%= @company.company_name %>
+      <%= link_to "編集", edit_admin_company_path(@company), class: "btn-blue" %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 px-sm-0 mx-auto">
+    <table class="table table-bordered">
+      <tr><th class="table-active" style="width:30%">担当者名</th><td><%= @company.responsible_name %></td></tr>
+      <tr><th class="table-active" style="width:30%">郵便番号</th><td><%= @company.postcode %></td></tr>
+      <tr><th class="table-active" style="width:30%">住所</th><td><%= @company.address %></td></tr>
+      <tr><th class="table-active" style="width:30%">Eメール</th><td><%= @company.email %></td></tr>
+      <tr><th class="table-active" style="width:30%">電話番号</th><td><%= @company.phone_number %></td></tr>
+      <tr><th class="table-active" style="width:30%">利用人数</th><td><%= @company.employees.count %></td></tr>
+      <tr><th class="table-active" style="width:30%">利用状況</th><td><%= @company.usage_status_display %></td></tr>
+    </table>
+  </div>
+</div>
+
+

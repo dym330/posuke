@@ -76,4 +76,6 @@ gem 'kaminari','~> 1.2.1'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'pry-rails'
-
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'gimei'

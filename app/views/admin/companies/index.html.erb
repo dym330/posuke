@@ -1,0 +1,24 @@
+<div class="title">
+  <h2><i class="far fa-building icon-color-blue"></i>企業一覧</h2>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th class="table-active" style="width:30%">企業名</th>
+      <th class="table-active" style="width:50%">住所</th>
+      <th class="table-active" style="width:10%">利用人数</th>
+      <th class="table-active" style="width:10%">利用状況</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @companys.each do |company| %>
+      <tr>
+        <td class="align-middle"><%= link_to company.company_name, admin_company_path(company) %></td>
+        <td class="align-middle"><%= company.address %></td>
+        <td class="align-middle"><%= company.employees.count %></td>
+        <td class="align-middle"><%= company.usage_status_display %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

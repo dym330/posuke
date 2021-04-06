@@ -17,3 +17,62 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
  @import "bootstrap";
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+
+ body  {
+   background-color: #ecf6ff;
+ }
+
+ .back-color-sub {
+   background-color: #00B0FF;
+ }
+
+ body, input, textarea, button, select {
+  font-family: Montserrat, 游ゴシック, YuGothic, Meiryo;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #FFFFFF;
+}
+
+.title {
+  margin: 30px 0;
+}
+
+.icon-color-blue {
+  color: #00B0FF;
+}
+
+.btn-blue {
+  display: inline-block;
+  text-align: left;
+  border: 2px solid #00B0FF;
+  background-color: #00B0FF;
+  font-size: 16px;
+  color: #00B0FF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+  color: #FFF;
+}
+
+.btn-blue:hover {
+  opacity: 0.8;
+}
+
+.field_with_errors {
+  display: contents;
+}
+
+.error-label {
+  color: red;
+  margin: 0.3em 0 0 10px;
+  font-size: 0.8em;
+}

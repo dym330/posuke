@@ -12,4 +12,13 @@ class Company < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
   has_many :employees, dependent: :destroy
+
+  #usage_statusのview表示
+  def usage_status_display
+    if self.usage_status
+      '利用中'
+    else
+      '利用停止'
+    end
+  end
 end

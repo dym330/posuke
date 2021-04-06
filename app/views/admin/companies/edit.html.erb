@@ -1,0 +1,47 @@
+<div class="title">
+  <h2><i class="far fa-building icon-color-blue"></i>企業編集</h2>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 px-sm-0 mx-auto">
+    <%= form_with model: @company, url: admin_company_path, local: true do |f| %>
+        <div class="row">
+          <%= f.label :company_name, "企業名" %>
+          <%= render 'shared/error_message', object: f.object, column: :company_name %>
+          <%= f.text_field :company_name, autofocus: true, class: "form-control mb-3" %>
+        </div>
+        <div class="row">
+          <%= f.label :responsible_name, "担当者名" %>
+          <%= render 'shared/error_message', object: f.object, column: :responsible_name %>
+          <%= f.text_field :responsible_name, class: "form-control mb-3" %>
+        </div>
+        <div class="row">
+          <%= f.label :postcode, "郵便番号（ハイフン無し）" %>
+          <%= render 'shared/error_message', object: f.object, column: :postcode %>
+          <%= f.text_field :postcode, class: "form-control mb-3" %>
+        </div>
+        <div class="row">
+          <%= f.label :address, "住所" %>
+          <%= render 'shared/error_message', object: f.object, column: :address %>
+          <%= f.text_field :address, class: "form-control mb-3" %>
+        </div>
+        <div class="row">
+          <%= f.label :email, "Eメール" %>
+          <%= render 'shared/error_message', object: f.object, column: :email %>
+          <%= f.email_field :email, class: "form-control mb-3" %>
+        </div>
+        <div class="row">
+          <%= f.label :phone_number, "電話番号（ハイフン無し）" %>
+          <%= render 'shared/error_message', object: f.object, column: :phone_number %>
+          <%= f.text_field :phone_number, class: "form-control mb-3" %>
+        </div>
+        <div class="row">
+          <%= f.label :usage_status, "利用状況" %>
+          <%= f.select :usage_status, [['利用中',true],['利用停止',false]], {}, class: "form-control mb-5" %>
+        </div>
+        <div class="row">
+          <%= f.submit "ログイン", class: "btn-blue" %>
+        </div>
+    <% end %>
+  </div>
+</div>

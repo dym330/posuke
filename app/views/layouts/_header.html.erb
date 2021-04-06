@@ -1,0 +1,26 @@
+<header>
+  <nav class="navbar navbar-dark navbar-expand-sm back-color-sub">
+    <div class="container">
+      <%= link_to 'ポスケ！', root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <% if admin_signed_in? %>
+            <li class="nav-item"><%= link_to '企業登録', new_admin_company_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '企業一覧', admin_companies_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, class: "nav-link", method: :delete %></li>
+          <% elsif employee_signed_in? %>
+            <li>従業員でログイン</li>
+          <% else %>
+            <li class="nav-item"><%= link_to '管理者ログイン', new_admin_session_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '従業員ログイン', new_employee_session_path, class: "nav-link" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
