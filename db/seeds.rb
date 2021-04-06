@@ -14,28 +14,28 @@ Company.create!(
   usage_status: true
 )
 
-Employee.create!(
-  id: 1,
-  company_id: 1,
-  name: Gimei.name.kanji,
-  email: "test@test.com",
-  password: "password",
-  department: "営業部",
-  joining_date: Date.new(2000, 01, 01),
-  admin: true,
-  enrollment_status: true
-)
+# Employee.create!(
+#   id: 1,
+#   company_id: 1,
+#   name: Gimei.name.kanji,
+#   email: "test@test.com",
+#   password: "password",
+#   department: "営業部",
+#   joining_date: Date.new(2000, 01, 01),
+#   admin: true,
+#   enrollment_status: true
+# )
 
-10.times do |n|
-  Employee.create!(
-    id: n + 2,
-    company_id: 1,
-    name: Gimei.name.kanji,
-    email: Faker::Internet.email,
-    password: "password",
-    department: "営業部",
-    joining_date: Date.new(2000, 01, 01),
-    admin: false,
-    enrollment_status: true
-  )
-end
+# 10.times do |n|
+#   Employee.create!(
+#     id: n + 2,
+#     company_id: 1,
+#     name: Gimei.name.kanji,
+#     email: Faker::Internet.email,
+#     password: "password",
+#     department: "営業部",
+#     joining_date: Date.new(2000, 01, 01),
+#     admin: false,
+#     enrollment_status: true
+#   )
+# end

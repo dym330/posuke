@@ -13,16 +13,13 @@
             <li class="nav-item"><%= link_to '企業登録', new_admin_company_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '企業一覧', admin_companies_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, class: "nav-link", method: :delete %></li>
-          <% elsif employee_signed_in? %>
-            <% if admin_employee_login? %>
-              <li class="nav-item"><%= link_to '従業員新規登録', new_employee_registration_path, class: "nav-link" %></li>
-            <% end %>
-            <li class="nav-item"><%= link_to '予定作成', new_schedule_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to 'マイページ', employee_path(current_employee), class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to 'ログアウト', destroy_employee_session_path, class: "nav-link", method: :delete %></li>
           <% else %>
+            <li class="nav-item"><%= link_to '従業員新規登録', new_employee_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '予定作成', new_schedule_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'マイページ', "#", class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', "#", class: "nav-link", method: :delete %></li>
             <li class="nav-item"><%= link_to '管理者ログイン', new_admin_session_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to '従業員ログイン', new_employee_session_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '従業員ログイン', "#", class: "nav-link" %></li>
           <% end %>
         </ul>
       </div>
