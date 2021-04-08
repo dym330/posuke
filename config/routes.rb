@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :public do
+    get 'replies/index'
+  end
+  namespace :public do
     get 'sessions/new'
   end
   devise_for :admin, skip: :all

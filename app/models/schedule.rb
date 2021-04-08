@@ -30,5 +30,4 @@ class Schedule < ApplicationRecord
   def favorited_by?(employee)
     schedule_favorites.where(employee_id: employee.id).exists?
   end
-  
 end

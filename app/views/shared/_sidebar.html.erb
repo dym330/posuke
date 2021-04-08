@@ -3,8 +3,22 @@
     <ul class="nav flex-column">
       <li class="nav-item"><%= link_to 'ホーム', schedules_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to 'カレンダー', "#", class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to '質問一覧', questions_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to '返信一覧', replies_path, class: "nav-link" %></li>
+      <li class="nav-item">
+        <%= link_to questions_path, class: "nav-link" do %>
+          質問一覧
+          <% if @schedule_questions_count >= 1 %>
+            <span class="badge badge-pill badge-danger ml-2"><%= @schedule_questions_count %></span>
+          <% end %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to replies_path, class: "nav-link" do %>
+          返信一覧
+          <% if @schedule_replies_count >= 1 %>
+            <span class="badge badge-pill badge-danger ml-2"><%= @schedule_replies_count %></span>
+          <% end %>
+        <% end %>
+      </li>
       <li class="nav-item"><%= link_to '検索', searches_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to 'グループ作成', new_group_path, class: "nav-link" %></li>
     </ul>

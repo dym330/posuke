@@ -5,6 +5,7 @@ class Public::SchedulecommentsController < ApplicationController
     schedule_comment = current_employee.schedule_comments.new(schedule_comment_params)
     schedule_comment.schedule_id = schedule.id
     if schedule_comment.save
+      schedule.update(comment_status: true) if schedule.comment_status == false
       flash[:success] = 'コメントを投稿しました'
       redirect_back(fallback_location: root_path)
     else

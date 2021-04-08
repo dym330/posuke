@@ -1,4 +1,6 @@
 class Public::EmployeesController < ApplicationController
+  before_action :sidebar_counts, only: [:show, :edit, :new]
+
   def show
     @employee = Employee.find(params[:id])
   end
