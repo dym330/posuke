@@ -48,6 +48,10 @@
   color: #00B0FF;
 }
 
+.icon-color-red {
+  color: red;
+}
+
 .btn-blue {
   display: inline-block;
   text-align: left;
@@ -65,6 +69,7 @@
 
 .btn-blue:hover {
   opacity: 0.8;
+  text-decoration: none;
 }
 
 .field_with_errors {
@@ -78,7 +83,54 @@
 }
 
 .sidebar {
-  background-color: #99dfffbd;
+  background-color: rgba($color: #00B0FF, $alpha: 0.3);
   border-radius: 12px;
   margin-top: 10px;
+}
+
+.schedule-block {
+  border-bottom: 1px solid #00B0FF;
+  margin-bottom: 10px;
+}
+
+.comment-block {
+  border-bottom: 1px solid #00B0FF;
+  margin-bottom: 10px;
+}
+
+.schedule-image {
+  border-radius: 20px;
+  margin: 10px;
+  object-fit: cover;
+}
+
+.schdule-text {
+  margin: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.fa-question {
+  color: red;
+  font-size: 1.5rem;
+}
+
+.fa-lightbulb {
+  color: orange;
+  font-size: 1.5rem;
+}
+
+.schedule-question-block {
+  border: 2px solid #00B0FF;
+  background-color: rgba($color: #00B0FF, $alpha: 0.5);
+}
+
+.text-blue {
+  color: #00B0FF;
+}
+
+.mypage-profile {
+  border-bottom: 1px solid #00B0FF ;
 }

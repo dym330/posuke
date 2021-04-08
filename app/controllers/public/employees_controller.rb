@@ -1,8 +1,20 @@
 class Public::EmployeesController < ApplicationController
   def show
+    @employee = Employee.find(params[:id])
   end
 
   def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    @employee = Employee.find(params[:id])
+    if (@employee.admin ? @employee.update(admin_employee_params) : @employee.update(employee_params))
+      flash[:success] = "従業員の更新に成功しました"
+      redirect_to employee_path(@employee)
+    else
+      render 'edit'
+    end
   end
 
   def new
@@ -25,5 +37,9 @@ class Public::EmployeesController < ApplicationController
   def admin_employee_params
     params.require(:employee).permit(:name, :email, :password, :password_confirmation,
                                 :image, :department, :joining_date, :admin, :enrollment_status)
+  end
+  def employee_params
+    params.require(:employee).permit(:name, :email, :password, :password_confirmation,
+                                :image, :department, :joining_date)
   end
 end

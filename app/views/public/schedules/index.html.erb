@@ -2,11 +2,10 @@
   <%= render 'shared/sidebar' %>
   <div class="col-sm-9">
     <div class="title">
-      <h2><i class="far fa-building icon-color-blue"></i>スケジュール一覧</h2>
+      <h2><i class="far fa-calendar-alt icon-color-blue"></i>スケジュール一覧</h2>
     </div>
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-9"></div>
-    </div>
+    <% @schedules.each do |schedule| %>
+      <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
+    <% end %>
   </div>
 </div>

@@ -15,10 +15,6 @@ class Company < ApplicationRecord
 
   #usage_statusのview表示
   def usage_status_display
-    if self.usage_status
-      '利用中'
-    else
-      '利用停止'
-    end
+    self.usage_status ? '利用中' : '利用停止'
   end
 end

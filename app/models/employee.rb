@@ -18,4 +18,9 @@ class Employee < ApplicationRecord
   has_many :schedule_favorites, dependent: :destroy
   has_many :group, dependent: :destroy
   has_many :group_relationships
+
+  #enrollment_statusのview表示
+  def enrollment_status_display
+    self.enrollment_status ? '在籍中' : '非在籍'
+  end
 end

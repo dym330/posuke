@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'sessions/new'
+  end
   devise_for :admin, skip: :all
   devise_scope :admin do
     get 'admin/sign_in' => 'admin/sessions#new', as: 'new_admin_session'
@@ -8,11 +11,14 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root "homes#top"
+    get    '/login' => 'sessions#new'
+    post   '/login' => 'sessions#create'
+    delete '/logout' => 'sessions#destroy'
     resources :contacts, only: [:create]
-    resources :schedules, only: [:index, :show, :new, :create] do
+    resources :schedules do
       patch 'status' => 'schedules#status'
-      resources :comments, only: [:create, :destroy]
-      resources :schedulefavorites, only: [:create, :destroy]
+      resources :schedulecomments, only: [:create, :destroy]
+      resource :schedulefavorites, only: [:create, :destroy]
     end
     resources :employees
     resources :questions, only: [:index]
