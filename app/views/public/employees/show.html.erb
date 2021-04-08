@@ -1,2 +1,27 @@
-<h1>Public::Employees#show</h1>
-<p>Find me in app/views/public/employees/show.html.erb</p>
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="fas fa-user-tie icon-color-blue"></i>マイページ</h2>
+    </div>
+    <div class="mypage-profile">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-5 text-center">
+          <%= attachment_image_tag @employee, :image, width: "150px", height: "150px", format: "jpeg",
+          fallback: "no_image.jpeg", class: "schedule-image" %>
+        </div>
+        <div class="col-lg-9 col-md-8 col-7 px-0">
+          <div class="card-body">
+            <h5 class="card-title"><%= @employee.name %></h5>
+            <p class="card-text"><%= "入社日：#{@employee.joining_date}" %></p>
+            <p class="card-text"><%= "部署名：#{@employee.department}" %></p>
+            <p class="card-text"><%= "在籍状況：#{@employee.enrollment_status_display}" %></p>
+            <% if @employee == current_employee || current_employee.admin %>
+            <%= link_to "編集", edit_employee_path(@employee), class: "btn-blue" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

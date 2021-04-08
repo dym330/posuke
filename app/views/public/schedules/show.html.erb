@@ -1,2 +1,35 @@
-<h1>Public::Schedules#show</h1>
-<p>Find me in app/views/public/schedules/show.html.erb</p>
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="far fa-calendar-alt icon-color-blue"></i>スケジュール詳細</h2>
+    </div>
+    <%= render 'shared/schedule_post', schedule: @schedule, cuurent_employee: current_employee %>
+    <% @schedule.schedule_comments.each do |comment| %>
+      <div class="comment-block">
+        <div class="row">
+          <div class="col-lg-2 col-md-3 col-sm-4 col-3 text-center">
+            <%= link_to employee_path(comment.employee) do %>
+              <%= attachment_image_tag comment.employee, :image, width: "70px", height: "70px", format: "jpeg",
+                  fallback: "no_image.jpeg", class: "schedule-image"%>
+            <% end %>
+            <% if admin_employee_login? || comment.employee == current_employee %>
+              <p><%= link_to "", schedule_schedulecomment_path(comment.schedule, comment), class: "fas fa-trash-alt mb-3", method: :delete, data: { confirm: '削除しますか？' } %></p>
+            <% end %>
+          </div>
+          <div class="col-md-9 col-sm-8 col-9">
+            <p class="schdule-text"><%= comment.created_at.strftime("%y年%m月%d日 %H:%M") %></p>
+            <p class="schdule-text mb-2"><%= comment.employee.name %></p>
+            <p class="schdule-text"><%= simple_format(comment.comment) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="new-comment">
+      <%= form_with(model: @scheduleComment, url: schedule_schedulecomments_path(@schedule), local: true) do |f| %>
+        <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control" %>
+        <%= f.submit "送信" %>
+      <% end %>
+    </div>
+  </div>
+</div>

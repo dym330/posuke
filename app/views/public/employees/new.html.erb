@@ -2,10 +2,10 @@
   <%= render 'shared/sidebar' %>
   <div class="col-sm-9">
     <div class="title">
-      <h2><i class="fas fa-user-tie icon-color-blue"></i>従業員編集</h2>
+      <h2><i class="fas fa-user-tie icon-color-blue"></i>従業員新規登録</h2>
     </div>
 
-    <%= form_with model: @employee, url: employee_path(@employee), local: true do |f| %>
+    <%= form_with model: @employee, url: employees_path, local: true do |f| %>
       <div class="row">
         <%= f.label :name, "名前" %>
         <%= render 'shared/error_message', object: f.object, column: :name %>
@@ -41,16 +41,6 @@
         <%= f.date_select :joining_date,{ use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt:"--"},
                                         {class: "form-control mb-3", style: 'display: inline-block;width: auto;'} %>
       </div>
-      <% if admin_employee_login? %>
-        <div class="row">
-          <%= f.label :admin, "管理権限" %>
-          <%= f.select :admin, [['管理者',true],['非管理者',false]], {}, class: "form-control mb-3" %>
-        </div>
-        <div class="row">
-          <%= f.label :enrollment_status, "在籍状況" %>
-          <%= f.select :enrollment_status, [['在籍中',true],['非在籍',false]], {}, class: "form-control mb-5" %>
-        </div>
-      <% end %>
       <div class="row">
         <%= f.submit "登録", class: "btn-blue" %>
       </div>

@@ -1,13 +1,17 @@
 class Employee < ApplicationRecord
+  VALID_EMAIL_REGEX = /\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/
   validates :name, presence: true, length: { in: 1..20 }
   validates :department, presence: true, length: { in: 1..20 }
   validates :joining_date, presence: true
   validates :admin, inclusion: { in: [true, false] }
   validates :enrollment_status, inclusion: { in: [true, false] }
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  validates :email, presence: true,
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness:true
+  has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }
+  attachment :image
+
   belongs_to :company
   has_many :schedules, dependent: :destroy
   has_many :schedule_comments, dependent: :destroy
@@ -15,5 +19,8 @@ class Employee < ApplicationRecord
   has_many :group, dependent: :destroy
   has_many :group_relationships
 
-  
+  #enrollment_statusのview表示
+  def enrollment_status_display
+    self.enrollment_status ? '在籍中' : '非在籍'
+  end
 end

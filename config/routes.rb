@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'sessions/new'
+  end
   devise_for :admin, skip: :all
   devise_scope :admin do
     get 'admin/sign_in' => 'admin/sessions#new', as: 'new_admin_session'
@@ -6,20 +9,18 @@ Rails.application.routes.draw do
     delete 'admin/sign_out' => 'admin/sessions#destroy', as: 'destroy_admin_session'
   end
 
-  devise_for :employee, controllers: {
-    sessions: 'public/sessions',
-    registrations: 'public/registrations',
-  }
-
   scope module: :public do
     root "homes#top"
+    get    '/login' => 'sessions#new'
+    post   '/login' => 'sessions#create'
+    delete '/logout' => 'sessions#destroy'
     resources :contacts, only: [:create]
-    resources :schedules, only: [:index, :show, :new, :create] do
+    resources :schedules do
       patch 'status' => 'schedules#status'
-      resources :comments, only: [:create, :destroy]
-      resources :schedulefavorites, only: [:create, :destroy]
+      resources :schedulecomments, only: [:create, :destroy]
+      resource :schedulefavorites, only: [:create, :destroy]
     end
-    resources :employees, only: [:show, :edit, :update]
+    resources :employees
     resources :questions, only: [:index]
     resources :replies, only: [:index]
     resources :searches, only: [:index]
