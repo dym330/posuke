@@ -1,2 +1,18 @@
-<h1>Public::Groups#edit</h1>
-<p>Find me in app/views/public/groups/edit.html.erb</p>
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="fas fa-users icon-color-blue"></i>グループ名編集</h2>
+    </div>
+    <%= form_with model: @group, local: true do |f| %>
+      <div class="row">
+        <%= f.label :name, "名前" %>
+        <%= render 'shared/error_message', object: f.object, column: :name %>
+        <%= f.text_field :name, autofocus: true, class: "form-control mb-3" %>
+      </div>
+      <div class="row">
+        <%= f.submit "登録", class: "btn-blue" %>
+      </div>
+    <% end %>
+  </div>
+</div>

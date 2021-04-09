@@ -1,0 +1,29 @@
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="fas fa-users icon-color-blue"></i>グループ一覧</h2>
+    </div>
+    <%= link_to "新規作成", new_group_path, class: "btn-blue mb-2" %>
+    <table class="table table-bordered ">
+      <thead>
+        <tr>
+          <th class="table-active" style="width:55%">グループ名</th>
+          <th class="table-active" style="width:15%">名称編集</th>
+          <th class="table-active" style="width:15%">従業員編集</th>
+          <th class="table-active" style="width:15%">削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
+          <tr>
+            <td class="align-middle"><%= link_to group.name, group_path(group) %></td>
+            <td class="align-middle text-center"><%= link_to "", edit_group_path(group), class: "fas fa-edit" %></td>
+            <td class="align-middle text-center"><%= link_to "", new_group_group_relationships_path(group), class: "fas fa-users-cog" %></td>
+            <td class="align-middle text-center"><%= link_to "", group_path(group), class: "fas fa-trash-alt", method: :delete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

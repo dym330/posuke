@@ -1,2 +1,11 @@
-<h1>Public::Groups#show</h1>
-<p>Find me in app/views/public/groups/show.html.erb</p>
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="far fa-calendar-alt icon-color-blue"></i><%= @group.name%> スケジュール投稿一覧</h2>
+    </div>
+    <% @schedules.each do |schedule| %>
+      <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
+    <% end %>
+  </div>
+</div>

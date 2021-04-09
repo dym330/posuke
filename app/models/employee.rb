@@ -16,7 +16,7 @@ class Employee < ApplicationRecord
   has_many :schedules, dependent: :destroy
   has_many :schedule_comments, dependent: :destroy
   has_many :schedule_favorites, dependent: :destroy
-  has_many :group, dependent: :destroy
+  has_many :groups, dependent: :destroy
   has_many :group_relationships
 
   #enrollment_statusのview表示
