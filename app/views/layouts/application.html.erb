@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Posuke</title>
+    <title>ポスケ！</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href='/fullcalendar/main.css' rel='stylesheet' />
+    <script src='/fullcalendar/main.js'></script>
   </head>
 
-  <body>
+  <body id="bodyid" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |key, value| %>

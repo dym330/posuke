@@ -1,7 +1,7 @@
 class Public::CalendarsController < ApplicationController
   before_action :sidebar_counts
   def index
-    @schedules = Schedule.where(employee_id: current_employee.id)
-    @schedule = @schedules.first
+    @schedules = Schedule.where(employee_id: params[:employee_id])
+    @schedule_employee = Employee.find(params[:employee_id])
   end
 end

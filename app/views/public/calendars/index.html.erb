@@ -2,8 +2,9 @@
   <%= render 'shared/sidebar' %>
   <div class="col-sm-9">
     <div class="title">
-      <h2><i class="far fa-calendar-alt icon-color-blue"></i>スケジュール編集</h2>
+      <h2><i class="far fa-calendar-alt icon-color-blue"></i><%= @schedule_employee.name %>さんのカレンダー</h2>
     </div>
-    <div id="calendar" data-employee-id="<%= @schedule.employee_id %>"></div>
+    <div id="calendar" data-employee-id="<%= @schedule_employee.id %>"></div>
   </div>
 </div>
+
