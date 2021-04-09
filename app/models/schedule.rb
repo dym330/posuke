@@ -30,4 +30,16 @@ class Schedule < ApplicationRecord
   def favorited_by?(employee)
     schedule_favorites.where(employee_id: employee.id).exists?
   end
+
+  def self.search(search, how_search)
+    if how_search == "1"
+      self.where(['title LIKE ?', "#{search}"])
+    elsif how_search == "2"
+      self.where(['title LIKE ?', "#{search}%"])
+    elsif how_search == "3"
+      self.where(['title LIKE ?', "%#{search}"])
+    elsif how_search == "4"
+      self.where(['title LIKE ?', "%#{search}%"])
+    end
+  end
 end

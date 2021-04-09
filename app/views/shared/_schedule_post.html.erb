@@ -1,30 +1,31 @@
 <div class="schedule-block">
+<%= link_to "", schedule_path(schedule), class: "link" %>
   <div class="row">
     <div class="col-lg-2 col-md-3 col-sm-4 col-3 text-center">
       <%= link_to employee_path(schedule.employee) do %>
         <%= attachment_image_tag schedule.employee, :image, width: "70px", height: "70px", format: "jpeg",
-            fallback: "no_image.jpeg", class: "schedule-image"%>
+            fallback: "no_image.jpeg", class: "schedule-image link-z"%>
       <% end %>
       <% if admin_employee_login? || schedule.employee == cuurent_employee %>
         <% if schedule.schedule_status == "質問中" %>
-        <p><%= link_to "", schedule_status_path(schedule), class: "fas fa-question", method: :patch %></p>
+        <p><%= link_to "", schedule_status_path(schedule), class: "fas fa-question icon-color-red icon-size-15 link-z", method: :patch %></p>
         <% elsif schedule.schedule_status == "解決済質問" %>
-        <p><%= link_to "", schedule_status_path(schedule), class: "fas fa-lightbulb", method: :patch %></p>
+        <p><%= link_to "", schedule_status_path(schedule), class: "fas fa-lightbulb icon-color-orange icon-size-15 link-z", method: :patch %></p>
         <% end %>
-        <%= link_to "", edit_schedule_path(schedule), class: "fas fa-edit mb-3" %>
-        <%= link_to "", schedule_path(schedule), class: "fas fa-trash-alt mb-3", method: :delete, data: { confirm: '削除しますか？' } %>
+        <%= link_to "", edit_schedule_path(schedule), class: "fas fa-edit mb-3 link-z" %>
+        <%= link_to "", schedule_path(schedule), class: "fas fa-trash-alt mb-3 link-z", method: :delete, data: { confirm: '削除しますか？' } %>
       <% else %>
         <% if schedule.schedule_status == "質問中" %>
-        <i class="fas fa-question mb-3"></i>
+        <i class="fas fa-question icon-color-red icon-size-15 mb-3"></i>
         <% elsif schedule.schedule_status == "質問解決" %>
-        <i class="fas fa-lightbulb mb-3"></i>
+        <i class="fas fa-lightbulb icon-color-orange icon-size-15 mb-3"></i>
         <% end %>
       <% end %>
     </div>
     <div class="col-md-9 col-sm-8 col-9">
       <p class="schdule-text"><%= schedule.start_and_end_time %></p>
       <p class="schdule-text"><%= schedule.employee.name %></p>
-      <h4 class="schdule-text mb-2"><%= link_to schedule.title, schedule_path(schedule) %></h4>
+      <h4 class="schdule-text mb-2"><%= schedule.title %></h4>
       <p class="schdule-text"><%= simple_format(schedule.content) %></p>
       <% unless schedule.question.blank? %>
         <div class="schedule-question-block mb-3 p-2">
@@ -33,13 +34,13 @@
         </div>
       <% end %>
       <% if schedule.favorited_by?(current_employee) %>
-        <%= link_to schedule_schedulefavorites_path(schedule), method: :delete do %>
+        <%= link_to schedule_schedulefavorites_path(schedule), method: :delete, class: "link-z favorite" do %>
           <i class="fas fa-heart icon-color-red mb-3 pr-1"></i>
           <span class="text-blue mr-1"><%= schedule.schedule_favorites.count %></span>
         <% end %>
       <% else %>
-        <%= link_to schedule_schedulefavorites_path(schedule), method: :post do %>
-          <i class="far fa-heart mb-3 pr-1 icon-color-blue"></i>
+        <%= link_to schedule_schedulefavorites_path(schedule), method: :post, class: "link-z favorite" do %>
+          <i class="far fa-heart mb-3 pr-1 icon-color-blue favorite"></i>
           <span class="text-blue mr-1"><%= schedule.schedule_favorites.count %></span>
         <% end %>
       <% end %>

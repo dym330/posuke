@@ -49,7 +49,11 @@
 }
 
 .icon-color-red {
-  color: red;
+  color:red;
+}
+
+.icon-color-orange {
+  color: orange
 }
 
 .btn-blue {
@@ -91,7 +95,34 @@
 .schedule-block {
   border-bottom: 1px solid #00B0FF;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
+
+.schedule-block:hover {
+  filter:alpha(opacity=70);/* IE 6,7*/
+  -ms-filter: "alpha(opacity=70)";/* IE 8,9 */
+  -moz-opacity:0.7;/* FF , Netscape */
+  -khtml-opacity: 0.7;/* Safari 1.x */
+  opacity:0.7;
+  zoom:1;/*IE*/
+}
+
+.schedule-block .link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.link-z {
+  z-index: 3;
+  position: relative;
+}
+
+
 
 .comment-block {
   border-bottom: 1px solid #00B0FF;
@@ -104,6 +135,10 @@
   object-fit: cover;
 }
 
+.schedule-image:hover {
+  border: 2px solid #00B0FF;
+}
+
 .schdule-text {
   margin: 0;
 }
@@ -112,13 +147,7 @@
   text-align: center;
 }
 
-.fa-question {
-  color: red;
-  font-size: 1.5rem;
-}
-
-.fa-lightbulb {
-  color: orange;
+.icon-size-15 {
   font-size: 1.5rem;
 }
 
@@ -133,4 +162,9 @@
 
 .mypage-profile {
   border-bottom: 1px solid #00B0FF ;
+}
+
+.favorite:hover {
+  color: red;
+  text-decoration: none;
 }

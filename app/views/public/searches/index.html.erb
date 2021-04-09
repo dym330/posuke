@@ -1,0 +1,50 @@
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="fas fa-question icon-color-blue"></i>検索</h2>
+    </div>
+    <%= form_with url:searches_path, method: :get, local: true do |f| %>
+      <div class="mb-3">
+        <div class="row">
+          <%= f.label "検索内容" %>
+          <%= f.text_field :search, class:"form-control mb-3", placeholder: "検索内容を入力してください" %>
+        </div>
+        <div class="row">
+          <%= f.label "検索条件" %>
+        </div>
+        <div class="row">
+          <div class="col-6 px-0 mb-3">
+            <%= f.select :option, [["従業員名", "employee_name"],["スケジュールタイトル", "schedule_title"]], {}, class:"form-control" %>
+          </div>
+          <div class="col-6 px-0 mb-3">
+            <%= f.select :choice, [["完全一致", "1"],["前方一致", "2"],["後方一致", "3"],["部分一致", "4"]], {}, class:"form-control" %>
+          </div>
+        </div>
+        <div class="row">
+        <%= f.submit '検索', class:"btn-blue" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="title">
+      <h2><i class="fas fa-question icon-color-blue"></i>検索結果</h2>
+    </div>
+    <% @schedules.each do |schedule| %>
+      <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
