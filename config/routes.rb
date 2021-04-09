@@ -29,8 +29,8 @@ Rails.application.routes.draw do
     resources :questions, only: [:index]
     resources :replies, only: [:index]
     resources :searches, only: [:index]
-    resources :groups, only: [:new, :create, :show, :edit, :update, :destroy] do
-      resources :grouprelationships, only: [:new, :create]
+    resources :groups do
+      resource :group_relationships, only: [:new, :create, :destroy]
     end
   end
 
