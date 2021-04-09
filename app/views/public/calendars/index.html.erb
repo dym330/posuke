@@ -1,2 +1,9 @@
-<h1>Public::Calendars#index</h1>
-<p>Find me in app/views/public/calendars/index.html.erb</p>
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="far fa-calendar-alt icon-color-blue"></i>スケジュール編集</h2>
+    </div>
+    <div id="calendar" data-employee-id="<%= @schedule.employee_id %>"></div>
+  </div>
+</div>

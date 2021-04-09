@@ -2,7 +2,7 @@
   <div class="sidebar">
     <ul class="nav flex-column">
       <li class="nav-item"><%= link_to 'ホーム', schedules_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to 'カレンダー', "#", class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to 'カレンダー', employee_calendars_path(current_employee), class: "nav-link" %></li>
       <li class="nav-item">
         <%= link_to questions_path, class: "nav-link" do %>
           質問一覧

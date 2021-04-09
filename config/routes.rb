@@ -23,7 +23,9 @@ Rails.application.routes.draw do
       resources :schedulecomments, only: [:create, :destroy]
       resource :schedulefavorites, only: [:create, :destroy]
     end
-    resources :employees
+    resources :employees do
+      get 'calendars' => 'calendars#index'
+    end
     resources :questions, only: [:index]
     resources :replies, only: [:index]
     resources :searches, only: [:index]
