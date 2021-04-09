@@ -23,4 +23,16 @@ class Employee < ApplicationRecord
   def enrollment_status_display
     self.enrollment_status ? '在籍中' : '非在籍'
   end
+
+  def self.search(search, how_search)
+    if how_search == "1"
+      self.where(['name LIKE ?', "#{search}"])
+    elsif how_search == "2"
+      self.where(['name LIKE ?', "#{search}%"])
+    elsif how_search == "3"
+      self.where(['name LIKE ?', "%#{search}"])
+    elsif how_search == "4"
+      self.where(['name LIKE ?', "%#{search}%"])
+    end
+  end
 end

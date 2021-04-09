@@ -2,7 +2,7 @@
   <%= render 'shared/sidebar' %>
   <div class="col-sm-9">
     <div class="title">
-      <h2><i class="fas fa-question icon-color-blue"></i>質問一覧</h2>
+      <h2><i class="fas fa-comments icon-color-blue"></i>返信一覧</h2>
     </div>
     <% @schedules.each do |schedule| %>
       <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>

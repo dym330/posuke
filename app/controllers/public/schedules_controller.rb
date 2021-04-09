@@ -1,8 +1,8 @@
 class Public::SchedulesController < ApplicationController
+  before_action :sidebar_counts, only: [:show, :edit, :new, :index]
   def index
-    @company = Company.find(current_employee.company_id)
-    @employees = @company
-    render plain: @company.employees.schedules.inspect
+    @company = Company.find(current_employee.company.id)
+    @schedules = Schedule.where(employee_id: @company.employees.ids).order(created_at: :DESC)
   end
 
   def new
@@ -38,6 +38,9 @@ class Public::SchedulesController < ApplicationController
   def show
     @schedule = Schedule.find(params[:id])
     @scheduleComment = ScheduleComment.new
+    if @schedule.comment_status == true && current_employee.id == @schedule.employee_id
+      @schedule.update(comment_status: false)
+    end
   end
 
   def destroy
