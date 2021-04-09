@@ -2,13 +2,13 @@
   <%= render 'shared/sidebar' %>
   <div class="col-sm-9">
     <div class="title">
-      <h2><i class="fas fa-question icon-color-blue"></i>検索</h2>
+      <h2><i class="fas fa-question icon-color-blue"></i>スケジュール検索</h2>
     </div>
     <%= form_with url:searches_path, method: :get, local: true do |f| %>
       <div class="mb-3">
         <div class="row">
           <%= f.label "検索内容" %>
-          <%= f.text_field :search, class:"form-control mb-3", placeholder: "検索内容を入力してください" %>
+          <%= f.search_field :search, class:"form-control mb-3", placeholder: "検索内容を入力してください" %>
         </div>
         <div class="row">
           <%= f.label "検索条件" %>
@@ -34,17 +34,3 @@
     <% end %>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

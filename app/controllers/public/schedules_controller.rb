@@ -1,5 +1,5 @@
 class Public::SchedulesController < ApplicationController
-  before_action :sidebar_counts, only: [:show, :edit, :new, :index]
+  before_action :sidebar_counts
   def index
     @company = Company.find(current_employee.company.id)
     @schedules = Schedule.where(employee_id: @company.employees.ids).order(created_at: :DESC)
