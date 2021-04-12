@@ -1,4 +1,4 @@
-class Public::SchedulecommentsController < ApplicationController
+class Public::ScheduleCommentsController < ApplicationController
 
   def create
     schedule = Schedule.find(params[:schedule_id])

@@ -14,7 +14,7 @@
                   fallback: "no_image.jpeg", class: "schedule-image"%>
             <% end %>
             <% if admin_employee_login? || comment.employee == current_employee %>
-              <p><%= link_to "", schedule_schedulecomment_path(comment.schedule, comment), class: "fas fa-trash-alt mb-3", method: :delete, data: { confirm: '削除しますか？' } %></p>
+              <p><%= link_to "", schedule_schedule_comment_path(comment.schedule, comment), class: "fas fa-trash-alt mb-3", method: :delete, data: { confirm: '削除しますか？' } %></p>
             <% end %>
           </div>
           <div class="col-md-9 col-sm-8 col-9">
@@ -26,7 +26,7 @@
       </div>
     <% end %>
     <div class="new-comment">
-      <%= form_with(model: @scheduleComment, url: schedule_schedulecomments_path(@schedule), local: true) do |f| %>
+      <%= form_with(model: @scheduleComment, url: schedule_schedule_comments_path(@schedule), local: true) do |f| %>
         <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control" %>
         <%= f.submit "送信" %>
       <% end %>
