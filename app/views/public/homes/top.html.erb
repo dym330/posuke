@@ -1,2 +1,36 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="home-img"></div>
+<div class="row">
+  <div class="col-sm-6 px-sm-0 mx-auto">
+    <p>導入を検討される方は下記問い合わせフォームまでご連絡ください</p>
+    <%= form_with model: @contact, local: true do |f| %>
+      <div class="row">
+        <%= f.label :company_name, "企業名" %>
+        <%= render 'shared/error_message', object: f.object, column: :company_name %>
+        <%= f.text_field :company_name, autofocus: true, class: "form-control mb-3" %>
+      </div>
+      <div class="row">
+        <%= f.label :responsible_name, "担当者名" %>
+        <%= render 'shared/error_message', object: f.object, column: :responsible_name %>
+        <%= f.text_field :responsible_name, class: "form-control mb-3" %>
+      </div>
+      <div class="row">
+        <%= f.label :email, "Eメール" %>
+        <%= render 'shared/error_message', object: f.object, column: :email %>
+        <%= f.email_field :email, class: "form-control mb-3" %>
+      </div>
+      <div class="row">
+        <%= f.label :phone_number, "電話番号（ハイフン無し）" %>
+        <%= render 'shared/error_message', object: f.object, column: :phone_number %>
+        <%= f.text_field :phone_number, class: "form-control mb-3" %>
+      </div>
+      <div class="row">
+        <%= f.label :message, "内容" %>
+        <%= render 'shared/error_message', object: f.object, column: :message %>
+        <%= f.text_area :message, class: "form-control mb-5" %>
+      </div>
+      <div class="row">
+        <%= f.submit "送信", class: "btn-blue" %>
+      </div>
+    <% end %>
+  </div>
+</div>

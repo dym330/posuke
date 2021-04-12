@@ -7,7 +7,9 @@ class Admin::CompaniesController < ApplicationController
     @company = Company.new(company_params)
     @company.usage_status = true
     if @company.save
-      redirect_to admin_companies_path, success: '登録完了しました'
+      @company.employee_admin_create
+      flash[:success] = '登録完了しました'
+      redirect_to admin_companies_path
     else
       render 'new'
     end

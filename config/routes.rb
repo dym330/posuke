@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     resources :contacts, only: [:create]
     resources :schedules do
       patch 'status' => 'schedules#status'
-      resources :schedulecomments, only: [:create, :destroy]
-      resource :schedulefavorites, only: [:create, :destroy]
+      resources :schedule_comments, only: [:create, :destroy]
+      resource :schedule_favorites, only: [:create, :destroy]
     end
     resources :employees do
       get 'calendars' => 'calendars#index'

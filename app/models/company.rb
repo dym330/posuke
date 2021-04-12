@@ -17,4 +17,18 @@ class Company < ApplicationRecord
   def usage_status_display
     self.usage_status ? '利用中' : '利用停止'
   end
+
+  #企業登録時に、1人管理者権限を持った従業員を登録
+  def employee_admin_create
+    employee = employees.new(name: self.responsible_name,
+                              email: self.email,
+                              password: 'password',
+                              department: '管理者',
+                              joining_date: Date.today,
+                              admin: true,
+                              enrollment_status: true)
+    unless employee.save
+      flash[:danger] = '従業員登録で予期せぬエラーが発生しました。'
+    end
+  end
 end
