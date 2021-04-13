@@ -19,3 +19,5 @@ RUN bundle install
 
 COPY . /posuke
 # ローカルのposuke配下のファイルをコンテナ内のposuke配下にコピー
+
+RUN mkdir -p tmp/sockets
