@@ -1,0 +1,68 @@
+name: Rails CI/CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:5.7
+        env:
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    container:
+      image: ruby:2.5.7
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup bundle
+        run: bundle install
+      - name: install chorme
+        run: |
+          curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+          apt-get update -q -y
+          apt-get install -y google-chrome-stable
+      - name: setup yarn
+        run: |
+          curl -sL https://deb.nodesource.com/setup_12.x | bash -
+          apt-get install -y nodejs
+          npm install -g yarn
+          yarn install
+      - name: setup migrate
+        run: |
+          rails db:create RAILS_ENV=test
+          rails db:migrate RAILS_ENV=test
+      - name: run spec
+        run: bundle exec rspec
+  # rubocop:
+  # runs-on: ubuntu-latest
+  # container:
+  #   image: ruby:2.6.5
+  # steps:
+  #   - uses: actions/checkout@v2
+  #   - name: setup bundle
+  #     run: bundle install
+  #   - name: run rubocop
+  #     run: bundle exec rubocop
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Deploy
+  #     env:
+  #       PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+  #       USER_NAME: ${{ secrets.USER_NAME }}
+  #       HOST_NAME: ${{ secrets.HOST_NAME }}
+  #     run: |
+  #       echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+  #       ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd アプリケーション名 &&
+  #       git pull origin ブランチ名 &&
+  #       ~/.rbenv/shims/bundle install &&
+  #       ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
+  #       ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
+  #       if [[ -e tmp/pids/puma.pid ]];then kill $(cat tmp/pids/puma.pid); echo kill puma process;fi &&
+  #       ~/.rbenv/shims/rails s -e production'
