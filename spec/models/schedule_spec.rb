@@ -35,7 +35,7 @@ RSpec.describe Schedule, type: :model do
       expect(build(:schedule, title: "a" * 21)).to be_invalid
     end
     it "終了時間が開始時間より前" do
-      expect(build(:schedule, start_time: Date.today, end_time: Date.yesterday)).to be_invalid
+      expect(build(:schedule, start_time: DateTime.new(2021, 1, 4), end_time: DateTime.new(2021, 1, 3))).to be_invalid
     end
     it "内容が1001文字" do
       expect(build(:schedule, content: "a" * 1001)).to be_invalid
