@@ -65,4 +65,4 @@ jobs:
         docker-compose build &&
         docker-compose run app rails assets:precompile RAILS_ENV=production &&
         docker-compose up -d &&
-        docker-compose exec app rails db:migrate RAILS_ENV=production
+        docker-compose exec app rails db:migrate RAILS_ENV=production'
