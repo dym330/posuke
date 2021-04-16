@@ -1,23 +1,21 @@
 class Public::ScheduleCommentsController < ApplicationController
 
   def create
-    schedule = Schedule.find(params[:schedule_id])
+    @schedule = Schedule.find(params[:schedule_id])
     schedule_comment = current_employee.schedule_comments.new(schedule_comment_params)
-    schedule_comment.schedule_id = schedule.id
+    schedule_comment.schedule_id = @schedule.id
     if schedule_comment.save
-      schedule.update(comment_status: true) if schedule.comment_status == false
-      flash[:success] = 'コメントを投稿しました'
-      redirect_back(fallback_location: root_path)
+      @schedule.update(comment_status: true) if @schedule.employee_id != current_employee.id
+      flash.now[:success] = 'コメントを投稿しました'
     else
-      flash[:danger] = 'コメントが正しく保存されませんでした。'
-      redirect_back(fallback_location: root_path)
+      flash.now[:danger] = 'コメントが正しく保存されませんでした。'
     end
   end
 
   def destroy
-     p params[:schedule_id]
-    ScheduleComment.find_by(id: params[:id], schedule_id: params[:schedule_id]).destroy
-    redirect_back(fallback_location: root_path)
+    @schedule = Schedule.find(params[:schedule_id])
+    ScheduleComment.find_by(id: params[:id], schedule_id: @schedule.id).destroy
+    flash.now[:success] = 'コメントを削除しました'
   end
 
   private

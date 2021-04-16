@@ -1,0 +1,13 @@
+<% if schedule.favorited_by?(current_employee) %>
+  <%= link_to schedule_schedule_favorites_path(schedule),
+       method: :delete, remote: true, class: "link-z favorite" do %>
+    <i class="fas fa-heart icon-color-red mb-3 pr-1"></i>
+    <span class="text-blue mr-1"><%= schedule.schedule_favorites.count %></span>
+  <% end %>
+<% else %>
+  <%= link_to schedule_schedule_favorites_path(schedule),
+       method: :post, remote: true, class: "link-z favorite" do %>
+    <i class="far fa-heart mb-3 pr-1 icon-color-blue favorite"></i>
+    <span class="text-blue mr-1"><%= schedule.schedule_favorites.count %></span>
+  <% end %>
+<% end %>
