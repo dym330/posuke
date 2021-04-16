@@ -34,19 +34,14 @@
           <p class="schdule-text"><%= simple_format(schedule.question) %></p>
         </div>
       <% end %>
-      <% if schedule.favorited_by?(current_employee) %>
-        <%= link_to schedule_schedule_favorites_path(schedule), method: :delete, class: "link-z favorite" do %>
-          <i class="fas fa-heart icon-color-red mb-3 pr-1"></i>
-          <span class="text-blue mr-1"><%= schedule.schedule_favorites.count %></span>
-        <% end %>
-      <% else %>
-        <%= link_to schedule_schedule_favorites_path(schedule), method: :post, class: "link-z favorite" do %>
-          <i class="far fa-heart mb-3 pr-1 icon-color-blue favorite"></i>
-          <span class="text-blue mr-1"><%= schedule.schedule_favorites.count %></span>
-        <% end %>
-      <% end %>
+
+      <span id="favorite_<%= schedule.id %>">
+        <%= render 'shared/favorite_button', current_employee: current_employee, schedule: schedule %>
+      </span>
+
       <i class="fas fa-comment pr-1 icon-color-blue"></i>
       <span class="text-blue"><%= schedule.schedule_comments.count %></span>
+
     </div>
   </div>
 </div>

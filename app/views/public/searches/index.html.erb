@@ -4,7 +4,7 @@
     <div class="title">
       <h2><i class="fas fa-question icon-color-blue"></i>スケジュール検索</h2>
     </div>
-    <%= form_with url:searches_path, method: :get, local: true do |f| %>
+    <%= form_with url:searches_path, method: :get do |f| %>
       <div class="mb-3">
         <div class="row">
           <%= f.label "検索内容" %>
@@ -26,11 +26,8 @@
         </div>
       <% end %>
     </div>
-    <div class="title">
-      <h2><i class="fas fa-question icon-color-blue"></i>検索結果</h2>
+    <div id="search_result">
+      <%= render 'search_result', schedules: @schedules %>
     </div>
-    <% @schedules.each do |schedule| %>
-      <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
-    <% end %>
   </div>
 </div>
