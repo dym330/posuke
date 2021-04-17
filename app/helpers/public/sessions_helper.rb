@@ -14,6 +14,13 @@ module Public::SessionsHelper
     !current_employee.nil?
   end
 
+  def check_employee_signed
+    unless employee_signed_in?
+      flash[:danger] = "ログインしてください"
+      redirect_to login_path
+    end
+  end
+
   def log_out
     session.delete(:employee_id)
     @current_employee = nil

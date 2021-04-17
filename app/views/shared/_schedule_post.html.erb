@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-lg-2 col-md-3 col-sm-4 col-3 text-center">
       <%= link_to employee_path(schedule.employee) do %>
-        <%= attachment_image_tag schedule.employee, :image, width: "70px", height: "70px", format: "jpeg",
+        <%= attachment_image_tag schedule.employee, :image, format: "jpeg",
             fallback: "no_image.jpeg", class: "schedule-image link-z"%>
       <% end %>
       <% if admin_employee_login? || schedule.employee == cuurent_employee %>
@@ -12,8 +12,11 @@
         <% elsif schedule.schedule_status == "解決済質問" %>
         <p><%= link_to "", schedule_status_path(schedule), class: "fas fa-lightbulb icon-color-orange icon-size-15 link-z", method: :patch %></p>
         <% end %>
-        <%= link_to "", edit_schedule_path(schedule), class: "fas fa-edit mb-3 link-z" %>
-        <%= link_to "", schedule_path(schedule), class: "fas fa-trash-alt mb-3 link-z", method: :delete, data: { confirm: '削除しますか？' } %>
+        <p>
+          <%= link_to "", edit_schedule_path(schedule), class: "fas fa-edit mb-3 link-z" %>
+          <%= link_to "", schedule_path(schedule), class: "fas fa-trash-alt mb-3 link-z",
+                          method: :delete, data: { confirm: '削除しますか？' } %>
+        </p>
       <% else %>
         <% if schedule.schedule_status == "質問中" %>
         <p><i class="fas fa-question icon-color-red icon-size-15 mb-3"></i></p>

@@ -1,37 +1,73 @@
 <div class="home-img"></div>
 <div class="row">
   <div class="col-sm-6 px-sm-0 mx-auto">
-    <p>デプロイ成功</p>
     <p>導入を検討される方は下記問い合わせフォームまでご連絡ください</p>
     <%= form_with model: @contact, local: true do |f| %>
       <div class="row">
-        <%= f.label :company_name, "企業名" %>
-        <%= render 'shared/error_message', object: f.object, column: :company_name %>
-        <%= f.text_field :company_name, autofocus: true, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :company_name, "企業名" %>
+          <%= render 'shared/error_message', object: f.object, column: :company_name %>
+          <%= f.text_field :company_name, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :responsible_name, "担当者名" %>
-        <%= render 'shared/error_message', object: f.object, column: :responsible_name %>
-        <%= f.text_field :responsible_name, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :responsible_name, "担当者名" %>
+          <%= render 'shared/error_message', object: f.object, column: :responsible_name %>
+          <%= f.text_field :responsible_name, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :email, "Eメール" %>
-        <%= render 'shared/error_message', object: f.object, column: :email %>
-        <%= f.email_field :email, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :email, "Eメール" %>
+          <%= render 'shared/error_message', object: f.object, column: :email %>
+          <%= f.email_field :email, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :phone_number, "電話番号（ハイフン無し）" %>
-        <%= render 'shared/error_message', object: f.object, column: :phone_number %>
-        <%= f.text_field :phone_number, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :phone_number, "電話番号（ハイフン無し）" %>
+          <%= render 'shared/error_message', object: f.object, column: :phone_number %>
+          <%= f.text_field :phone_number, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :message, "内容" %>
-        <%= render 'shared/error_message', object: f.object, column: :message %>
-        <%= f.text_area :message, class: "form-control mb-5" %>
+        <div class="col-12">
+          <%= f.label :message, "内容" %>
+          <%= render 'shared/error_message', object: f.object, column: :message %>
+          <%= f.text_area :message, class: "form-control mb-5" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.submit "送信", class: "btn-blue" %>
+        <div class="col-12">
+          <%= f.submit "送信", class: "btn-blue" %>
+        </div>
       </div>
     <% end %>
   </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal02">モーダル標準</button>
+<div class="modal" id="modal02" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title">モーダルのタイトル</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<p>表示させたいテキスト</p>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+				<button type="button" class="btn btn-primary">変更を保存</button>
+			</div>
+
+		</div>
+	</div>
 </div>

@@ -1,4 +1,5 @@
 class Public::SchedulesController < ApplicationController
+  before_action :check_employee_signed
   before_action :sidebar_counts, expect: [:show]
   def index
     @company = Company.find(current_employee.company.id)

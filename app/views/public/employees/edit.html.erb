@@ -7,52 +7,59 @@
 
     <%= form_with model: @employee, url: employee_path(@employee), local: true do |f| %>
       <div class="row">
-        <%= f.label :name, "名前" %>
-        <%= render 'shared/error_message', object: f.object, column: :name %>
-        <%= f.text_field :name, autofocus: true, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :name, "名前" %>
+          <%= render 'shared/error_message', object: f.object, column: :name %>
+          <%= f.text_field :name, autofocus: true, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :name, "Eメール" %>
-        <%= render 'shared/error_message', object: f.object, column: :email %>
-        <%= f.email_field :email, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :name, "Eメール" %>
+          <%= render 'shared/error_message', object: f.object, column: :email %>
+          <%= f.email_field :email, class: "form-control mb-3" %>
+        </div>
+      </div>
+      <div class="row"><div class="col-12"><%= f.label :image, "画像" %></div></div>
+      <div class="row"><div class="col-12"><%= f.attachment_field :image,class: "mb-3" %></div></div>
+      <div class="row">
+        <div class="col-12">
+          <%= f.label :department, "部署名" %>
+          <%= render 'shared/error_message', object: f.object, column: :department %>
+          <%= f.text_field :department, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :password, "パスワード" %>
-        <%= render 'shared/error_message', object: f.object, column: :password %>
-        <%= f.password_field :password, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :joining_date, "入社日" %>
+          <%= render 'shared/error_message', object: f.object, column: :joining_date %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :password_confirmation, "再確認パスワード" %>
-        <%= render 'shared/error_message', object: f.object, column: :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: "form-control mb-3" %>
-      </div>
-      <div class="row"><%= f.label :image, "画像" %></div>
-      <div class="row"><%= f.attachment_field :image,class: "mb-3" %></div>
-      <div class="row">
-        <%= f.label :department, "部署名" %>
-        <%= render 'shared/error_message', object: f.object, column: :department %>
-        <%= f.text_field :department, class: "form-control mb-3" %>
-      </div>
-      <div class="row">
-        <%= f.label :joining_date, "入社日" %>
-        <%= render 'shared/error_message', object: f.object, column: :joining_date %>
-      </div>
-      <div class="row">
-        <%= f.date_select :joining_date,{ use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt:"--"},
-                                        {class: "form-control mb-3", style: 'display: inline-block;width: auto;'} %>
+        <div class="col-12">
+          <%= f.date_select :joining_date,{ use_month_numbers: true, start_year: 1950, end_year: Time.now.year, prompt:"--"},
+                                          {class: "form-control mb-3", style: 'display: inline-block;width: auto;'} %>
+        </div>
       </div>
       <% if admin_employee_login? %>
         <div class="row">
-          <%= f.label :admin, "管理権限" %>
-          <%= f.select :admin, [['管理者',true],['非管理者',false]], {}, class: "form-control mb-3" %>
+          <div class="col-12">
+            <%= f.label :admin, "管理権限" %>
+            <%= f.select :admin, [['管理者',true],['非管理者',false]], {}, class: "form-control mb-3" %>
+          </div>
         </div>
         <div class="row">
-          <%= f.label :enrollment_status, "在籍状況" %>
-          <%= f.select :enrollment_status, [['在籍中',true],['非在籍',false]], {}, class: "form-control mb-5" %>
+          <div class="col-12">
+            <%= f.label :enrollment_status, "在籍状況" %>
+            <%= f.select :enrollment_status, [['在籍中',true],['非在籍',false]], {}, class: "form-control mb-5" %>
+          </div>
         </div>
       <% end %>
       <div class="row">
-        <%= f.submit "登録", class: "btn-blue" %>
+        <div class="col-12">
+          <%= f.submit "登録", class: "btn-blue" %>
+          <%= link_to "パスワードの変更はこちら", employee_password_path(@employee), class: "btn-blue" %>
+        </div>
       </div>
     <% end %>
   </div>

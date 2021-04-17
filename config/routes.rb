@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'replies/index'
-  end
-  namespace :public do
-    get 'sessions/new'
-  end
   devise_for :admin, skip: :all
   devise_scope :admin do
     get 'admin/sign_in' => 'admin/sessions#new', as: 'new_admin_session'
@@ -24,6 +18,8 @@ Rails.application.routes.draw do
       resource :schedule_favorites, only: [:create, :destroy]
     end
     resources :employees do
+      get 'password' => 'employees#password'
+      patch 'update_password' => 'employees#update_password'
       get 'calendars' => 'calendars#index'
     end
     resources :questions, only: [:index]

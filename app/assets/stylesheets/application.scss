@@ -136,8 +136,10 @@
 
 .schedule-image {
   border-radius: 20px;
-  margin: 10px;
+  margin: 10px 0px;
   object-fit: cover;
+  width: 70px;
+  height: 70px;
 }
 
 .schedule-image:hover {
@@ -172,4 +174,25 @@
 .favorite:hover {
   color: red;
   text-decoration: none;
+}
+
+@media screen and (max-width: 480px) {
+  .schedule-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .schedule-image {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .schedule-image {
+    width: 30px;
+    height: 30px;
+  }
 }

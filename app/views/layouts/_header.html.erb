@@ -14,7 +14,9 @@
             <li class="nav-item"><%= link_to '企業一覧', admin_companies_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, class: "nav-link", method: :delete %></li>
           <% elsif employee_signed_in? %>
-            <li class="nav-item"><%= link_to '従業員新規登録', new_employee_path, class: "nav-link" %></li>
+            <% if admin_employee_login? %>
+              <li class="nav-item"><%= link_to '従業員新規登録', new_employee_path, class: "nav-link" %></li>
+            <% end %>
             <li class="nav-item"><%= link_to '予定作成', new_schedule_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'マイページ', employee_path(current_employee), class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログアウト', logout_path, class: "nav-link", method: :delete %></li>

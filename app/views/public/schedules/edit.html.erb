@@ -7,34 +7,42 @@
 
     <%= form_with model: @schedule, url: schedule_path, local: true do |f| %>
       <div class="row">
-        <%= f.label :title, "タイトル" %>
-        <%= render 'shared/error_message', object: f.object, column: :title %>
-        <%= f.text_field :title, autofocus: true, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :title, "タイトル" %>
+          <%= render 'shared/error_message', object: f.object, column: :title %>
+          <%= f.text_field :title, autofocus: true, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <div class="col-6 px-0">
+        <div class="col-6">
           <%= f.label :start_time, "開始時間" %>
           <%= render 'shared/error_message', object: f.object, column: :start_time %>
           <%= f.datetime_field :start_time, class: "form-control mb-3" %>
         </div>
-        <div class="col-6 px-0">
+        <div class="col-6">
           <%= f.label :end_time, "終了時間" %>
           <%= render 'shared/error_message', object: f.object, column: :end_time %>
           <%= f.datetime_field :end_time, class: "form-control mb-3" %>
         </div>
       </div>
       <div class="row">
-        <%= f.label :content, "内容" %>
-        <%= render 'shared/error_message', object: f.object, column: :content %>
-        <%= f.text_area :content, class: "form-control mb-3" %>
+      <div class="col-12">
+          <%= f.label :content, "内容" %>
+          <%= render 'shared/error_message', object: f.object, column: :content %>
+          <%= f.text_area :content, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :question, "質問" %>
-        <%= render 'shared/error_message', object: f.object, column: :question %>
-        <%= f.text_area :question, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :question, "質問" %>
+          <%= render 'shared/error_message', object: f.object, column: :question %>
+          <%= f.text_area :question, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.submit "投稿", class: "btn-blue" %>
+        <div class="col-12">
+          <%= f.submit "投稿", class: "btn-blue" %>
+        </div>
       </div>
     <% end %>
   </div>
