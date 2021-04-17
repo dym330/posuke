@@ -18,8 +18,8 @@ RSpec.describe "問い合わせフォームのテスト", type: :system do
       expect(Contact.first.responsible_name).to eq("テスト次郎")
     end
     it "メールが送信されているか" do
-      expect(@mail.from.first).to eq(ENV["MAIL_USERNAME"])
-      expect(@mail.to.first).to eq(ENV["MAIL_USERNAME"])
+      expect(@mail.from.first).to eq("test@test.com")
+      expect(@mail.to.first).to eq("test@test.com")
       expect(@mail.body).to have_content "株式会社テスト"
       expect(@mail.body).to have_content "test@test.com"
       expect(@mail.body).to have_content "09011223344"
