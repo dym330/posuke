@@ -9,7 +9,9 @@ class Employee < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness:true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :password, presence: true, length: { minimum: 6 },
+                        allow_blank: true, on: :update
   attachment :image
 
   belongs_to :company

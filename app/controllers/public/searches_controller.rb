@@ -1,4 +1,5 @@
 class Public::SearchesController < ApplicationController
+  before_action :check_employee_signed
   before_action :sidebar_counts
 
   def index

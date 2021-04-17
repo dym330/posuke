@@ -7,6 +7,12 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     attributes:
+      contact:
+        company_name: 企業名
+        responsible_name: 担当者名
+        email: Eメール
+        phone_number: 電話番号
+        message: 内容
       company:
         company_name: 企業名
         responsible_name: 担当者名

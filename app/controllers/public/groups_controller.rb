@@ -1,4 +1,5 @@
 class Public::GroupsController < ApplicationController
+  before_action :check_employee_signed
   before_action :sidebar_counts
   def new
     @group = Group.new

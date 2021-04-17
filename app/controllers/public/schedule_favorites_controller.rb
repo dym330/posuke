@@ -1,4 +1,5 @@
 class Public::ScheduleFavoritesController < ApplicationController
+  before_action :check_employee_signed
 
   def create
     @schedule = Schedule.find(params[:schedule_id])

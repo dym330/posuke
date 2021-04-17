@@ -1,4 +1,5 @@
 class Public::GroupRelationshipsController < ApplicationController
+  before_action :check_employee_signed
   before_action :sidebar_counts
   def new
     @group = Group.find(params[:group_id])
