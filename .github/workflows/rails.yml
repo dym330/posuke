@@ -48,6 +48,7 @@ jobs:
   #   - name: run rubocop
   #     run: bundle exec rubocop
   build:
+    needs: rspec
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
