@@ -1,5 +1,5 @@
 <div class="schedule-block">
-<%= link_to "", schedule_path(schedule), class: "link" %>
+<%= link_to "", schedule_path(schedule), class: "link", id: "schedule-post-#{schedule.id}" %>
   <div class="row">
     <div class="col-lg-2 col-md-3 col-sm-4 col-3 text-center">
       <%= link_to employee_path(schedule.employee) do %>
@@ -43,7 +43,7 @@
       </span>
 
       <i class="fas fa-comment pr-1 icon-color-blue"></i>
-      <span class="text-blue"><%= schedule.schedule_comments.count %></span>
+      <span class="text-blue" id="comment_count"><%= schedule.schedule_comments.count %></span>
 
     </div>
   </div>

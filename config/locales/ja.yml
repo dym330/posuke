@@ -29,7 +29,7 @@ ja:
         question: 質問
         schedule_status: 予定ステータス
         comment_status: コメントステータス
-      emplyee:
+      employee:
         name: 名前
         email: Eメール
         password: パスワード

@@ -3,7 +3,7 @@ FactoryBot.define do
     sequence(:id) { |n| n }
     company_id { Company.first.id }
     name { "テスト次郎" }
-    email { "test@test.com" }
+    sequence(:email) { |n| "test#{n}@test.com" }
     password { "testtest" }
     department { "課長" }
     joining_date { Date.today }
