@@ -9,7 +9,7 @@ RSpec.describe "従業員のログイン、ログアウトテスト", type: :sys
 
   context "適切な内容でのテスト" do
     it "ログイン、ログアウト可能か" do
-      fill_in "session_email", with: "test@test.com"
+      fill_in "session_email", with: Employee.first.email
       fill_in "session_password", with: "testtest"
       click_button "ログイン"
       expect(current_path).to eq(schedules_path)
@@ -21,13 +21,13 @@ RSpec.describe "従業員のログイン、ログアウトテスト", type: :sys
 
   context "不適切な内容でのテスト" do
     it "パスワードが不適切(空欄)" do
-      fill_in "session_email", with: "test@test.com"
+      fill_in "session_email", with: Employee.first.email
       click_button "ログイン"
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
     it "パスワードが不適切(入力内容が違う)" do
-      fill_in "session_email", with: "test@test.com"
+      fill_in "session_email", with: Employee.first.email
       fill_in "session_password", with: "TESTTEST"
       click_button "ログイン"
       expect(current_path).to eq(login_path)
@@ -40,7 +40,7 @@ RSpec.describe "従業員のログイン、ログアウトテスト", type: :sys
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
     it "Eメールが不適切(入力内容が違う)" do
-      fill_in "session_email", with: "test1@test.com"
+      fill_in "session_email", with: "not@test.com"
       fill_in "session_password", with: "testtest"
       click_button "ログイン"
       expect(current_path).to eq(login_path)

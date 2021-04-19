@@ -7,6 +7,6 @@ FactoryBot.define do
     address { "大阪府テスト市テスト町１−２−３" }
     phone_number { "09012345678" }
     usage_status { "true" }
-    email { "test@test.com" }
+    sequence(:email) { |n| "test#{n}@test.com" }
   end
 end
