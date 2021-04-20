@@ -20,7 +20,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    driven_by :selenium_chrome_headless
   end
 
   # rspec-expectations config goes here. You can use an alternate
