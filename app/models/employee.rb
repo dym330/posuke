@@ -19,7 +19,7 @@ class Employee < ApplicationRecord
   has_many :schedule_comments, dependent: :destroy
   has_many :schedule_favorites, dependent: :destroy
   has_many :groups, dependent: :destroy
-  has_many :group_relationships
+  has_many :group_relationships, dependent: :destroy
 
   #enrollment_statusのview表示
   def enrollment_status_display
@@ -28,13 +28,13 @@ class Employee < ApplicationRecord
 
   def self.search(search, how_search)
     if how_search == "1"
-      self.where(['name LIKE ?', "#{search}"])
+      self.where(['name LIKE ?', "%#{search}%"])
     elsif how_search == "2"
       self.where(['name LIKE ?', "#{search}%"])
     elsif how_search == "3"
       self.where(['name LIKE ?', "%#{search}"])
     elsif how_search == "4"
-      self.where(['name LIKE ?', "%#{search}%"])
+      self.where(['name LIKE ?', "#{search}"])
     end
   end
 end

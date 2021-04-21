@@ -1,5 +1,5 @@
 <% schedule.schedule_comments.each do |comment| %>
-  <div class="comment-block">
+  <div id="comment_<%= comment.id %>"class="comment-block">
     <div class="row">
       <div class="col-lg-2 col-md-3 col-sm-4 col-3 text-center">
         <%= link_to employee_path(comment.employee) do %>

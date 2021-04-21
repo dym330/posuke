@@ -17,10 +17,19 @@
       <tbody>
         <% @groups.each do |group| %>
           <tr>
-            <td class="align-middle"><%= link_to group.name, group_path(group) %></td>
-            <td class="align-middle text-center"><%= link_to "", edit_group_path(group), class: "fas fa-edit" %></td>
-            <td class="align-middle text-center"><%= link_to "", new_group_group_relationships_path(group), class: "fas fa-users-cog" %></td>
-            <td class="align-middle text-center"><%= link_to "", group_path(group), class: "fas fa-trash-alt", method: :delete %></td>
+            <td class="align-middle">
+              <%= link_to group.name, group_path(group) %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "", edit_group_path(group), class: "fas fa-edit" %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "", new_group_group_relationships_path(group), class: "fas fa-users-cog" %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "", group_path(group), class: "fas fa-trash-alt",
+                   method: :delete, data: { confirm: '削除しますか？' } %>
+            </td>
           </tr>
         <% end %>
       </tbody>

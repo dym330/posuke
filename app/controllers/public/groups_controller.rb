@@ -1,6 +1,7 @@
 class Public::GroupsController < ApplicationController
   before_action :check_employee_signed
   before_action :sidebar_counts
+  before_action :check_current_employee, only: [:edit]
   def new
     @group = Group.new
   end
@@ -22,7 +23,7 @@ class Public::GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      flash[:success] = 'グループ名を編集しました'
+      flash[:success] = 'グループ名を編集しました。'
       redirect_to group_path(@group)
     else
       render 'edit'
@@ -35,12 +36,26 @@ class Public::GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
+  end
+
+  def destroy
+    Group.find(params[:id]).destroy
+    flash[:success] = 'グループを削除しました。'
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
   def group_params
     params.require(:group).permit(:name)
+  end
+
+  # 自分が作成したグループ以外の編集ページには行けないようにする
+  def check_current_employee
+    @group = Group.find(params[:id])
+    unless @group.employee_id == current_employee.id
+      flash[:danger] = "アクセスしたページには権限が無いため閲覧できません。"
+      redirect_to schedules_path
+    end
   end
 end

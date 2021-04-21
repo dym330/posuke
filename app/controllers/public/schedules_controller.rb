@@ -1,6 +1,7 @@
 class Public::SchedulesController < ApplicationController
   before_action :check_employee_signed
   before_action :sidebar_counts, expect: [:show]
+  before_action :check_admin_or_current_employee, only: [:edit, :destroy]
   def index
     @company = Company.find(current_employee.company.id)
     @schedules = Schedule.where(employee_id: @company.employees.ids).order(id: :DESC)
@@ -11,14 +12,13 @@ class Public::SchedulesController < ApplicationController
   end
 
   def edit
-    @schedule = Schedule.find(params[:id])
   end
 
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
       question_status_check(@schedule)
-      flash[:success] = '予定を更新しました'
+      flash[:success] = '予定を更新しました。'
       redirect_to schedule_path(@schedule)
     else
       render 'edit'
@@ -29,7 +29,7 @@ class Public::SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.employee_id = current_employee.id
     if @schedule.save
-      flash[:success] = '予定を登録しました'
+      flash[:success] = '予定を登録しました。'
       redirect_to schedules_path
     else
       render 'new'
@@ -47,7 +47,7 @@ class Public::SchedulesController < ApplicationController
 
   def destroy
     Schedule.find(params[:id]).destroy
-    flash[:success] = '予定を削除しました'
+    flash[:success] = '予定を削除しました。'
     redirect_to schedules_path
   end
 
@@ -75,5 +75,13 @@ class Public::SchedulesController < ApplicationController
       schedule.update(schedule_status: 1) if schedule.schedule_status == '未質問'
     end
   end
-  
+
+  # 編集ページに管理者、投稿者以外の人がアクセスした場合、スケジュール一覧に飛ばす
+  def check_admin_or_current_employee
+    @schedule = Schedule.find(params[:id])
+    unless @schedule.employee_id == current_employee.id || current_employee.admin
+      flash[:danger] = "アクセスしたページには権限が無いため閲覧できません。"
+      redirect_to schedules_path
+    end
+  end
 end

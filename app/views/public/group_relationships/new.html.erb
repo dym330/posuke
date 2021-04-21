@@ -14,13 +14,23 @@
       </thead>
       <tbody>
         <% @employees.each do |employee| %>
-          <tr>
-            <td class="align-middle"><%= attachment_image_tag employee, :image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %><%= employee.name %></td>
+          <tr id="employee_id<%= employee.id %>">
+            <td class="align-middle">
+              <%= attachment_image_tag employee, :image, format: 'jpeg',
+                   fallback: "no_image.jpg", size: "50x50", class: "group-employee-image" %>
+              <%= employee.name %>
+            </td>
             <td class="align-middle"><%= employee.department %></td>
             <% if @group.relationship_by?(employee) %>
-              <td class="align-middle text-center"><%= link_to "", group_group_relationships_path(@group, employee_id: employee.id), class: "fas fa-trash-alt", method: :delete %></td>
+              <td class="align-middle text-center">
+                <%= link_to "", group_group_relationships_path(@group, employee_id: employee.id),
+                                 class: "fas fa-trash-alt", method: :delete %>
+              </td>
             <% else %>
-              <td class="align-middle text-center"><%= link_to "", group_group_relationships_path(@group, employee_id: employee.id), class: "fas fa-plus-circle", method: :post %></td>
+              <td class="align-middle text-center">
+                <%= link_to "", group_group_relationships_path(@group, employee_id: employee.id),
+                                 class: "fas fa-plus-circle", method: :post %>
+              </td>
             <% end %>
           </tr>
         <% end %>
