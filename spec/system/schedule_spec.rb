@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "スケジュール関係のテスト", type: :system do
-  before do
-    create(:company)
-    create(:employee, admin: false)
-    visit login_path
-    fill_in "session_email", with: Employee.first.email
-    fill_in "session_password", with: "testtest"
-    click_button "ログイン"
-  end
   context "admin権限の無い従業員" do
+    before do
+      create(:company)
+      create(:employee, admin: false)
+      visit login_path
+      fill_in "session_email", with: Employee.first.email
+      fill_in "session_password", with: "testtest"
+      click_button "ログイン"
+    end
     it "スケジュールの新規投稿" do
       expect(page).not_to have_content("書類作成")
       click_link "予定作成"
@@ -23,7 +23,7 @@ RSpec.describe "スケジュール関係のテスト", type: :system do
       expect(page).to have_content("頑張ります！")
     end
 
-    it "スケジュールの編集", js: true do
+    it "スケジュールの編集" do
       schedule = create(:schedule)
       visit schedules_path
       click_link "schedule-post-#{schedule.id}"
@@ -38,17 +38,69 @@ RSpec.describe "スケジュール関係のテスト", type: :system do
       expect(page).to have_content("決めてきます！")
     end
 
-    # it "スケジュールの削除", js: true do
-    #   schedule = create(:schedule)
-    #   visit schedules_path
-    #   expect(page).to have_content("資料作成")
-    #   visit schedule_path(schedule)
-    #   page.accept_confirm do
-    #     find(".fa-trash").click
-    #   end
-    #   expect(page).to have_content("予定を削除しました")
-    #   expect(page).not_to have_content("資料作成")
-    # end
+    it "スケジュールの削除", js: true do
+      schedule = create(:schedule)
+      visit schedules_path
+      expect(page).to have_content("資料作成")
+      visit schedule_path(schedule)
+      page.accept_confirm do
+        find(".fa-trash-alt").click
+      end
+      expect(page).to have_content("予定を削除しました")
+      expect(page).not_to have_content("資料作成")
+    end
+
+    it "スケジュールの質問追加" do
+      schedule = create(:schedule)
+      visit schedule_path(schedule)
+      expect(page).not_to have_content("質問中")
+      visit edit_schedule_path(schedule)
+      fill_in "schedule_question", with: "○○についてわからないため教えていただけないでしょうか？"
+      click_button "投稿"
+      expect(page).to have_content("質問中")
+      expect(page).to have_content("○○についてわからないため教えていただけないでしょうか？")
+    end
+
+    it "質問状況の変更" do
+      schedule = create(:schedule, question: "質問内容", schedule_status: 1)
+      visit schedule_path(schedule)
+      expect(page).to have_selector '.badge-danger', text: "1"
+      find(".fa-question").click
+      expect(page).not_to have_selector '.badge-danger'
+      expect(page).to have_content("解決済質問")
+      find(".fa-lightbulb").click
+      expect(page).to have_selector '.badge-danger', text: "1"
+      expect(page).to have_content("質問中")
+    end
+
+    it "投稿が自身ではない物への編集、削除制限" do
+      create(:employee)
+      other_employee_schedule = create(:schedule, employee_id: Employee.last.id)
+      visit schedule_path(other_employee_schedule)
+      expect(page).not_to have_selector '.fa-edit'
+      expect(page).not_to have_selector '.fa-trash-alt'
+      visit edit_schedule_path(other_employee_schedule)
+      expect(current_path).to eq(schedules_path)
+    end
+  end
+  context "admin権限の従業員" do
+    before do
+      create(:company)
+      create(:employee, admin: true)
+      visit login_path
+      fill_in "session_email", with: Employee.first.email
+      fill_in "session_password", with: "testtest"
+      click_button "ログイン"
+    end
+    it "投稿が自身ではないスケジュールでも編集、削除可能" do
+      create(:employee)
+      other_employee_schedule = create(:schedule, employee_id: Employee.last.id)
+      visit schedule_path(other_employee_schedule)
+      expect(page).to have_selector '.fa-edit'
+      expect(page).to have_selector '.fa-trash-alt'
+      visit edit_schedule_path(other_employee_schedule)
+      expect(current_path).to eq(edit_schedule_path(other_employee_schedule))
+    end
   end
 
 end

@@ -7,7 +7,7 @@ class Public::ScheduleCommentsController < ApplicationController
     schedule_comment.schedule_id = @schedule.id
     if schedule_comment.save
       @schedule.update(comment_status: true) if @schedule.employee_id != current_employee.id
-      flash.now[:success] = 'コメントを投稿しました'
+      flash.now[:success] = 'コメントを投稿しました。'
     else
       flash.now[:danger] = 'コメントが正しく保存されませんでした。'
     end
@@ -16,7 +16,7 @@ class Public::ScheduleCommentsController < ApplicationController
   def destroy
     @schedule = Schedule.find(params[:schedule_id])
     ScheduleComment.find_by(id: params[:id], schedule_id: @schedule.id).destroy
-    flash.now[:success] = 'コメントを削除しました'
+    flash.now[:success] = 'コメントを削除しました。'
   end
 
   private

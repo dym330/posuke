@@ -9,7 +9,7 @@ class Admin::CompaniesController < ApplicationController
     @company.usage_status = true
     if @company.save
       @company.employee_admin_create
-      flash[:success] = '登録完了しました'
+      flash[:success] = '登録完了しました。'
       redirect_to admin_companies_path
     else
       render 'new'
@@ -31,7 +31,7 @@ class Admin::CompaniesController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update(company_params)
-      redirect_to admin_company_path(@company), success: '更新完了しました'
+      redirect_to admin_company_path(@company), success: '更新完了しました。'
     else
       render 'edit'
     end

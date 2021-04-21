@@ -79,6 +79,7 @@
 .btn-blue:hover {
   opacity: 0.8;
   text-decoration: none;
+  color: white;
 }
 
 .field_with_errors {
@@ -174,6 +175,11 @@
 .favorite:hover {
   color: red;
   text-decoration: none;
+}
+
+.group-employee-image {
+  border-radius: 20px;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 480px) {

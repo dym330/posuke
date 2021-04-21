@@ -33,13 +33,13 @@ class Schedule < ApplicationRecord
 
   def self.search(search, how_search)
     if how_search == "1"
-      self.where(['title LIKE ?', "#{search}"])
+      self.where(['title LIKE ?', "%#{search}%"])
     elsif how_search == "2"
       self.where(['title LIKE ?', "#{search}%"])
     elsif how_search == "3"
       self.where(['title LIKE ?', "%#{search}"])
     elsif how_search == "4"
-      self.where(['title LIKE ?', "%#{search}%"])
+      self.where(['title LIKE ?', "#{search}"])
     end
   end
 end
