@@ -27,8 +27,9 @@ class Schedule < ApplicationRecord
     end
   end
 
+  #いいねされているかどうかを真偽値で返す
   def favorited_by?(employee)
-    schedule_favorites.where(employee_id: employee.id).exists?
+    !!schedule_favorites.find{ |i| i[:employee_id] == employee.id }
   end
 
   def self.search(search, how_search)

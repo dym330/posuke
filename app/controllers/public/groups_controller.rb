@@ -1,6 +1,7 @@
 class Public::GroupsController < ApplicationController
   before_action :check_employee_signed
-  before_action :sidebar_counts
+  before_action :sidebar_questions_count
+  before_action :sidebar_replies_count
   before_action :check_current_employee, only: [:edit]
   def new
     @group = Group.new
@@ -31,8 +32,11 @@ class Public::GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
-    @schedules = Schedule.where(employee_id: @group.employees.ids).order(created_at: :DESC)
+    @group = Group.includes(:employees)
+                  .find(params[:id])
+    @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
+                         .where(employee_id: @group.employees.ids)
+                         .order(created_at: :DESC)
   end
 
   def edit
