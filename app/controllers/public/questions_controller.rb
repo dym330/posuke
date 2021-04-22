@@ -1,8 +1,11 @@
 class Public::QuestionsController < ApplicationController
   before_action :check_employee_signed
-  before_action :sidebar_counts
+  before_action :sidebar_replies_count
   def index
-    @company = Company.find(current_employee.company.id)
-    @schedules = Schedule.where(employee_id: @company.employees.ids).where(schedule_status: 1).order(created_at: :DESC)
+    @employee_ids_in_current_company = Company.find(current_employee.company.id).employees.ids
+    @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
+                         .where(employee_id: @employee_ids_in_current_company)
+                         .where(schedule_status: 1)
+    @schedule_questions_count = @schedules.length
   end
 end

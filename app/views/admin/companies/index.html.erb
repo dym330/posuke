@@ -16,7 +16,7 @@
       <tr>
         <td class="align-middle"><%= link_to company.company_name, admin_company_path(company) %></td>
         <td class="align-middle"><%= company.address %></td>
-        <td class="align-middle"><%= company.employees.count %></td>
+        <td class="align-middle"><%= company.employees.length %></td>
         <td class="align-middle"><%= company.usage_status_display %></td>
       </tr>
     <% end %>

@@ -2,7 +2,8 @@ class Public::EmployeesController < ApplicationController
   before_action :check_employee_signed
   before_action :check_admin_employee_signed, only: [:new]
   before_action :check_admin_or_current_employee_signed, only: [:edit, :password]
-  before_action :sidebar_counts
+  before_action :sidebar_questions_count
+  before_action :sidebar_replies_count
 
   def show
     @employee = Employee.find(params[:id])

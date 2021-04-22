@@ -4,7 +4,7 @@
   </div>
 <% else %>
   <div class="title">
-    <h2><i class="fas fa-question icon-color-blue"></i>検索結果: <%= @schedules.count %>件</h2>
+    <h2><i class="fas fa-question icon-color-blue"></i>検索結果: <%= @schedules.length %>件</h2>
   </div>
   <% @schedules.each do |schedule| %>
     <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>

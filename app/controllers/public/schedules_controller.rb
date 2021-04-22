@@ -1,10 +1,11 @@
 class Public::SchedulesController < ApplicationController
   before_action :check_employee_signed
-  before_action :sidebar_counts, expect: [:show]
+  before_action :sidebar_questions_count
+  before_action :sidebar_replies_count, expect: [:show]
   before_action :check_admin_or_current_employee, only: [:edit, :destroy]
   def index
-    @company = Company.find(current_employee.company.id)
-    @schedules = Schedule.where(employee_id: @company.employees.ids).order(id: :DESC)
+    @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
+                         .where(employee_id: @employee_ids_in_current_company).order(id: :DESC)
   end
 
   def new
@@ -42,7 +43,7 @@ class Public::SchedulesController < ApplicationController
     if @schedule.comment_status == true && current_employee.id == @schedule.employee_id
       @schedule.update(comment_status: false)
     end
-    sidebar_counts
+    sidebar_replies_count
   end
 
   def destroy
