@@ -1,5 +1,6 @@
 <% flash.each do |key, value| %>
   <% key = "danger" if key == "alert" %>
+  <% key = "success" if key == "notice" %>
   <p class="alert alert-<%= key %>">
     <%= value %>
   </p>

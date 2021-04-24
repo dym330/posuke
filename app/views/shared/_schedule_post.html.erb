@@ -8,9 +8,15 @@
       <% end %>
       <% if admin_employee_login? || schedule.employee == cuurent_employee %>
         <% if schedule.schedule_status == "質問中" %>
-        <p><%= link_to "", schedule_status_path(schedule), class: "fas fa-question icon-color-red icon-size-15 link-z", method: :patch %></p>
+          <p>
+            <%= link_to "", schedule_status_path(schedule),
+                class: "fas fa-question icon-color-red icon-size-15 link-z", method: :patch %>
+          </p>
         <% elsif schedule.schedule_status == "解決済質問" %>
-        <p><%= link_to "", schedule_status_path(schedule), class: "fas fa-lightbulb icon-color-orange icon-size-15 link-z", method: :patch %></p>
+          <p>
+            <%= link_to "", schedule_status_path(schedule),
+                class: "fas fa-lightbulb icon-color-orange icon-size-15 link-z", method: :patch %>
+          </p>
         <% end %>
         <p>
           <%= link_to "", edit_schedule_path(schedule), class: "fas fa-edit mb-3 link-z" %>
@@ -19,9 +25,13 @@
         </p>
       <% else %>
         <% if schedule.schedule_status == "質問中" %>
-        <p><i class="fas fa-question icon-color-red icon-size-15 mb-3"></i></p>
+          <p>
+            <i class="fas fa-question icon-color-red icon-size-15 mb-3"></i>
+          </p>
         <% elsif schedule.schedule_status == "解決済質問" %>
-        <p><i class="fas fa-lightbulb icon-color-orange icon-size-15 mb-3"></i></p>
+          <p>
+            <i class="fas fa-lightbulb icon-color-orange icon-size-15 mb-3"></i>
+          </p>
         <% end %>
       <% end %>
     </div>

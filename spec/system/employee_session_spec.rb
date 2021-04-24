@@ -46,5 +46,23 @@ RSpec.describe "従業員のログイン、ログアウトテスト", type: :sys
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+    it "非在籍者はログインができない" do
+      create(:employee, enrollment_status: false, email: "status@false.com")
+      fill_in "session_email", with: "status@false.com"
+      fill_in "session_password", with: "testtest"
+      click_button "ログイン"
+      expect(current_path).to eq(login_path)
+      expect(page).to have_content("ログインが認められませんでした。")
+    end
+
+    it "会社が利用停止した場合、ログインができない" do
+      create(:company, usage_status: false)
+      create(:employee, email: "status@false.com", company_id: Company.last.id)
+      fill_in "session_email", with: "status@false.com"
+      fill_in "session_password", with: "testtest"
+      click_button "ログイン"
+      expect(current_path).to eq(login_path)
+      expect(page).to have_content("ログインが認められませんでした。")
+    end
   end
 end

@@ -3,6 +3,11 @@ class Public::RepliesController < ApplicationController
   before_action :sidebar_questions_count
   before_action :sidebar_replies_count
   def index
-    @schedules = Schedule.where(employee_id: current_employee.id).where(comment_status: true).order(created_at: :DESC)
+    @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
+                         .where(employee_id: current_employee.id)
+                         .where(comment_status: true)
+                         .order(created_at: :DESC)
+                         .page(params[:page])
+                         .per(10)
   end
 end

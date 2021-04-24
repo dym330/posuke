@@ -182,6 +182,24 @@
   object-fit: cover;
 }
 
+.pagination>li>a {
+  border: 1px solid #00B0FF;
+  color: #696969;
+  background-color: #ecf6ff;
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #00B0FF;
+  border-color: #00B0FF;
+  border: 1px solid #00B0FF;
+}
+
+.pagination>li>a:hover {
+  background-color: #cee7fd;
+  border: 1px solid #00B0FF;
+}
+
 @media screen and (max-width: 480px) {
   .schedule-image {
     width: 50px;
