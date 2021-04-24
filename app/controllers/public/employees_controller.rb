@@ -63,6 +63,12 @@ class Public::EmployeesController < ApplicationController
     end
   end
 
+  def guest_admin_change
+    employee = Employee.find_by(email: "guest@guest.com")
+    employee.update(admin: !employee.admin)
+    redirect_to edit_employee_path(employee)
+  end
+
   private
 
   def admin_employee_params

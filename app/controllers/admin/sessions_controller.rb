@@ -18,6 +18,15 @@ class Admin::SessionsController < Devise::SessionsController
     super
   end
 
+  def guest_sign_in
+    admin = Admin.find_or_create_by!(email: 'guest@guest.com') do |admin|
+      admin.password = "password"
+    end
+    sign_in(admin)
+    flash[:success] = 'ゲストユーザーとしてログインしました。'
+    redirect_to admin_companies_path
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

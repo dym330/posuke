@@ -3,40 +3,54 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-6 px-sm-0 mx-auto">
+  <div class="col-md-6 col-sm-8 px-sm-0 mx-auto">
     <%= form_with model: @company, url: {controller: 'admin/companies' }, local: true do |f| %>
       <div class="row">
-        <%= f.label :company_name, "企業名" %>
-        <%= render 'shared/error_message', object: f.object, column: :company_name %>
-        <%= f.text_field :company_name, autofocus: true, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :company_name, "企業名" %>
+          <%= render 'shared/error_message', object: f.object, column: :company_name %>
+          <%= f.text_field :company_name, autofocus: true, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :responsible_name, "担当者名" %>
-        <%= render 'shared/error_message', object: f.object, column: :responsible_name %>
-        <%= f.text_field :responsible_name, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :responsible_name, "担当者名" %>
+          <%= render 'shared/error_message', object: f.object, column: :responsible_name %>
+          <%= f.text_field :responsible_name, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :postcode, "郵便番号（ハイフン無し）" %>
-        <%= render 'shared/error_message', object: f.object, column: :postcode %>
-        <%= f.text_field :postcode, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :postcode, "郵便番号（ハイフン無し）" %>
+          <%= render 'shared/error_message', object: f.object, column: :postcode %>
+          <%= f.text_field :postcode, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :address, "住所" %>
-        <%= render 'shared/error_message', object: f.object, column: :address %>
-        <%= f.text_field :address, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :address, "住所" %>
+          <%= render 'shared/error_message', object: f.object, column: :address %>
+          <%= f.text_field :address, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :email, "Eメール" %>
-        <%= render 'shared/error_message', object: f.object, column: :email %>
-        <%= f.email_field :email, class: "form-control mb-3" %>
+        <div class="col-12">
+          <%= f.label :email, "Eメール" %>
+          <%= render 'shared/error_message', object: f.object, column: :email %>
+          <%= f.email_field :email, class: "form-control mb-3" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.label :phone_number, "電話番号（ハイフン無し）" %>
-        <%= render 'shared/error_message', object: f.object, column: :phone_number %>
-        <%= f.text_field :phone_number, class: "form-control mb-5" %>
+        <div class="col-12">
+          <%= f.label :phone_number, "電話番号（ハイフン無し）" %>
+          <%= render 'shared/error_message', object: f.object, column: :phone_number %>
+          <%= f.text_field :phone_number, class: "form-control mb-5" %>
+        </div>
       </div>
       <div class="row">
-        <%= f.submit "ログイン", class: "btn-blue" %>
+        <div class="col-12">
+          <%= f.submit "登録", class: "btn-blue" %>
+        </div>
       </div>
     <% end %>
   </div>

@@ -13,13 +13,15 @@
           <%= f.text_field :name, autofocus: true, class: "form-control mb-3" %>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <%= f.label :name, "Eメール" %>
-          <%= render 'shared/error_message', object: f.object, column: :email %>
-          <%= f.email_field :email, class: "form-control mb-3" %>
+      <% unless @employee.email == "guest@guest.com"%>
+        <div class="row">
+          <div class="col-12">
+            <%= f.label :name, "Eメール" %>
+            <%= render 'shared/error_message', object: f.object, column: :email %>
+            <%= f.email_field :email, class: "form-control mb-3" %>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div class="row"><div class="col-12"><%= f.label :image, "画像" %></div></div>
       <div class="row"><div class="col-12"><%= f.attachment_field :image,class: "mb-3" %></div></div>
       <div class="row">
@@ -57,8 +59,15 @@
       <% end %>
       <div class="row">
         <div class="col-12">
-          <%= f.submit "登録", class: "btn-blue" %>
-          <%= link_to "パスワードの変更はこちら", employee_password_path(@employee), class: "btn-blue" %>
+          <%= f.submit "登録", class: "btn-blue mb-5" %>
+          <%= link_to "パスワードの変更はこちら", employee_password_path(@employee), class: "btn-blue mb-5" %>
+        </div>
+      </div>
+    <% end %>
+    <% if @employee.email == "guest@guest.com"%>
+      <div class="row">
+        <div class="col-12">
+          <%= link_to "ゲストユーザーの管理者権限の変更", guest_admin_change_path, class: "btn-blue", method: :patch %>
         </div>
       </div>
     <% end %>

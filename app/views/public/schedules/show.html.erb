@@ -7,11 +7,9 @@
     <div id="schedule_post">
       <%= render 'shared/schedule_post', schedule: @schedule, cuurent_employee: current_employee %>
     </div>
-
     <div id="comments">
       <%= render 'shared/comments_view', schedule: @schedule, cuurent_employee: current_employee %>
     </div>
-
     <div class="new-comment">
       <%= form_with(model: @scheduleComment, url: schedule_schedule_comments_path(@schedule)) do |f| %>
         <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control", id: "comment_text_area" %>

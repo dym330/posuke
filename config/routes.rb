@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'admin/sign_in' => 'admin/sessions#new', as: 'new_admin_session'
     post 'admin/sign_in' => 'admin/sessions#create', as: 'admin_session'
     delete 'admin/sign_out' => 'admin/sessions#destroy', as: 'destroy_admin_session'
+    post 'admin/guest_sign_in' => 'admin/sessions#guest_sign_in', as: 'guest_session'
   end
 
   scope module: :public do
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
     get    '/login' => 'sessions#new'
     post   '/login' => 'sessions#create'
     delete '/logout' => 'sessions#destroy'
+    post   '/guest_login' => 'sessions#guest_create'
+    patch 'guest_admin_change' => 'employees#guest_admin_change'
     resources :contacts, only: [:create]
     resources :schedules do
       patch 'status' => 'schedules#status'

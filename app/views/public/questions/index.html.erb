@@ -4,8 +4,18 @@
     <div class="title">
       <h2><i class="fas fa-question icon-color-blue"></i>質問一覧</h2>
     </div>
-    <% @schedules.each do |schedule| %>
-      <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
+    <% if @schedules.length != 0 %>
+      <%= paginate @schedules %>
+      <% @schedules.each do |schedule| %>
+        <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
+      <% end %>
+      <%= paginate @schedules %>
+    <% else %>
+      <div class="row">
+        <div class="col-12">
+          <h4>質問は現在ありません。</h4>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
