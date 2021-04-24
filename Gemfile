@@ -74,8 +74,6 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'font-awesome-sass'
 gem 'kaminari','~> 1.2.1'
-# gem 'fullcalendar-rails'
-# gem 'momentjs-rails'
 gem 'pry-rails'
 gem 'rails-i18n'
 gem 'devise-i18n'

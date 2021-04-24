@@ -5,7 +5,10 @@ class Public::SchedulesController < ApplicationController
   before_action :check_admin_or_current_employee, only: [:edit, :destroy]
   def index
     @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
-                         .where(employee_id: @employee_ids_in_current_company).order(id: :DESC)
+                         .where(employee_id: @employee_ids_in_current_company)
+                         .order(id: :DESC)
+                         .page(params[:page])
+                         .per(10)
   end
 
   def new
