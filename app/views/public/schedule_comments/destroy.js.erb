@@ -1,6 +1,6 @@
 document.getElementById("comments").innerHTML =
 "<%= j(render 'shared/comments_view', schedule: @schedule, cuurent_employee: current_employee) %>";
 document.getElementById("comment_count").innerHTML =
-"<%= j(@schedule.schedule_comments.count) %>";
+"<%= @schedule.schedule_comments.count %>";
 document.getElementById("flash_message").innerHTML =
 "<%= j(render 'layouts/flash_message', flash: flash) %>";
