@@ -1,0 +1,26 @@
+<div class="title">
+  <h2><i class="fas fa-address-card icon-color-blue"></i>問い合わせ詳細</h2>
+</div>
+<div class="row">
+  <div class="col-sm-10 px-sm-0 mx-auto">
+    <h3>
+      <%= @contact.company_name %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 px-sm-0 mx-auto">
+    <table class="table table-bordered">
+      <tr><th class="table-active" style="width:30%">担当者名</th><td><%= @contact.responsible_name %></td></tr>
+      <tr><th class="table-active" style="width:30%">Eメール</th><td><%= @contact.email %></td></tr>
+      <tr><th class="table-active" style="width:30%">電話番号</th><td><%= @contact.phone_number %></td></tr>
+      <tr><th class="table-active" style="width:30%">内容</th><td><%= simple_format(@contact.message) %></td></tr>
+      <tr>
+        <th class="table-active" style="width:30%">問い合わせ日</th>
+        <td><%= @contact.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+

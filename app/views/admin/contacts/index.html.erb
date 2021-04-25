@@ -1,0 +1,23 @@
+<div class="title">
+  <h2><i class="fas fa-address-card icon-color-blue"></i>問い合わせ一覧</h2>
+</div>
+<%= paginate @contacts %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th class="table-active" style="width:50%">企業名</th>
+      <th class="table-active" style="width:25%">担当者名</th>
+      <th class="table-active" style="width:25%">問い合わせ日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td class="align-middle"><%= link_to contact.company_name, admin_contact_path(contact) %></td>
+        <td class="align-middle"><%= contact.responsible_name %></td>
+        <td class="align-middle"><%= contact.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @contacts %>

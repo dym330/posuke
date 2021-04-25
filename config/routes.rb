@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :companies, only: [:new, :create, :show, :edit, :update, :index]
+    resources :contacts, only: [:index, :show]
   end
 
   scope module: :public do
