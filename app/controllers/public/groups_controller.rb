@@ -1,8 +1,8 @@
 class Public::GroupsController < ApplicationController
+  before_action :check_current_employee, only: [:edit, :employee_list]
   before_action :check_employee_signed
   before_action :sidebar_questions_count
   before_action :sidebar_replies_count
-  before_action :check_current_employee, only: [:edit]
   def new
     @group = Group.new
   end
@@ -48,6 +48,12 @@ class Public::GroupsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def employee_list
+    @group = Group.find(params[:group_id])
+    @employees = @group.employees
+                       .page(params[:page]).per(10)
+  end
+
   private
 
   def group_params
@@ -56,7 +62,8 @@ class Public::GroupsController < ApplicationController
 
   # 自分が作成したグループ以外の編集ページには行けないようにする
   def check_current_employee
-    @group = Group.find(params[:id])
+    group_id = params[:id] || params[:group_id]
+    @group = Group.find(group_id)
     unless @group.employee_id == current_employee.id
       flash[:danger] = "アクセスしたページには権限が無いため閲覧できません。"
       redirect_to schedules_path

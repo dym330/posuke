@@ -8,7 +8,8 @@
     <table class="table table-bordered ">
       <thead>
         <tr>
-          <th class="table-active" style="width:55%">グループ名</th>
+          <th class="table-active" style="width:40%">グループ名</th>
+          <th class="table-active" style="width:15%">従業員一覧</th>
           <th class="table-active" style="width:15%">名称編集</th>
           <th class="table-active" style="width:15%">従業員編集</th>
           <th class="table-active" style="width:15%">削除</th>
@@ -21,13 +22,16 @@
               <%= link_to group.name, group_path(group) %>
             </td>
             <td class="align-middle text-center">
-              <%= link_to "", edit_group_path(group), class: "fas fa-edit" %>
+              <%= link_to "", group_employee_list_path(group), class: "fas fa-users icon-size-15" %>
             </td>
             <td class="align-middle text-center">
-              <%= link_to "", new_group_group_relationships_path(group), class: "fas fa-users-cog" %>
+              <%= link_to "", edit_group_path(group), class: "fas fa-edit icon-size-15" %>
             </td>
             <td class="align-middle text-center">
-              <%= link_to "", group_path(group), class: "fas fa-trash-alt",
+              <%= link_to "", new_group_group_relationships_path(group), class: "fas fa-users-cog icon-size-15" %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "", group_path(group), class: "fas fa-trash-alt icon-size-15",
                    method: :delete, data: { confirm: '削除しますか？' } %>
             </td>
           </tr>

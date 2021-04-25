@@ -1,7 +1,6 @@
 <div class="title">
   <h2><i class="far fa-building icon-color-blue"></i>企業編集</h2>
 </div>
-
 <div class="row">
   <div class="col-md-6 col-sm-8 px-sm-0 mx-auto">
     <%= form_with model: @company, url: admin_company_path, local: true do |f| %>
@@ -37,8 +36,8 @@
           <div class="col-12">
             <%= f.label :email, "Eメール" %>
             <% if current_admin.email != "guest@guest.com" %>
-            <%= render 'shared/error_message', object: f.object, column: :email %>
-            <%= f.email_field :email, class: "form-control mb-3" %>
+              <%= render 'shared/error_message', object: f.object, column: :email %>
+              <%= f.email_field :email, class: "form-control mb-3" %>
             <% else %>
               <p>ゲストユーザーは編集権限がありません。</p>
             <% end %>

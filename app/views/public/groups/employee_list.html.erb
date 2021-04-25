@@ -2,7 +2,7 @@
   <%= render 'shared/sidebar' %>
   <div class="col-sm-9">
     <div class="title">
-      <h2><i class="fas fa-users icon-color-blue"></i>グループ 従業員登録</h2>
+      <h2><i class="fas fa-users icon-color-blue"></i><%= @group.name %> 従業員一覧</h2>
     </div>
     <%= paginate @employees %>
     <table class="table table-bordered ">
@@ -10,7 +10,7 @@
         <tr>
           <th class="table-active" style="width:60%">従業員名</th>
           <th class="table-active" style="width:20%">部署名</th>
-          <th class="table-active" style="width:20%">追加,削除</th>
+          <th class="table-active" style="width:20%">カレンダー</th>
         </tr>
       </thead>
       <tbody>
@@ -23,18 +23,12 @@
               <% end %>
               <%= employee.name %>
             </td>
-            <td class="align-middle"><%= employee.department %></td>
-            <% if @group.relationship_by?(employee) %>
-              <td class="align-middle text-center">
-                <%= link_to "", group_group_relationships_path(@group, employee_id: employee.id),
-                                class: "fas fa-trash-alt icon-size-15", method: :delete %>
-              </td>
-            <% else %>
-              <td class="align-middle text-center">
-                <%= link_to "", group_group_relationships_path(@group, employee_id: employee.id),
-                                class: "fas fa-plus-circle icon-size-15", method: :post %>
-              </td>
-            <% end %>
+            <td class="align-middle">
+              <%= employee.department %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "" , employee_calendars_path(employee), class: "far fa-calendar-alt icon-size-15" %>
+            </td>
           </tr>
         <% end %>
       </tbody>

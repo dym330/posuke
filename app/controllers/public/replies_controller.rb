@@ -7,7 +7,6 @@ class Public::RepliesController < ApplicationController
                          .where(employee_id: current_employee.id)
                          .where(comment_status: true)
                          .order(created_at: :DESC)
-                         .page(params[:page])
-                         .per(10)
+                         .page(params[:page]).per(10)
   end
 end

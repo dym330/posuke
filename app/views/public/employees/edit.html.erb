@@ -4,7 +4,6 @@
     <div class="title">
       <h2><i class="fas fa-user-tie icon-color-blue"></i>従業員編集</h2>
     </div>
-
     <%= form_with model: @employee, url: employee_path(@employee), local: true do |f| %>
       <div class="row">
         <div class="col-12">
@@ -13,17 +12,27 @@
           <%= f.text_field :name, autofocus: true, class: "form-control mb-3" %>
         </div>
       </div>
-      <% unless @employee.email == "guest@guest.com"%>
-        <div class="row">
-          <div class="col-12">
-            <%= f.label :name, "Eメール" %>
+      <div class="row">
+        <div class="col-12">
+          <%= f.label :name, "Eメール" %>
+          <% if @employee.email != "guest@guest.com"%>
             <%= render 'shared/error_message', object: f.object, column: :email %>
             <%= f.email_field :email, class: "form-control mb-3" %>
-          </div>
+          <% else %>
+            <p>ゲストユーザーは編集権限がありません。</p>
+          <% end %>
         </div>
-      <% end %>
-      <div class="row"><div class="col-12"><%= f.label :image, "画像" %></div></div>
-      <div class="row"><div class="col-12"><%= f.attachment_field :image,class: "mb-3" %></div></div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <%= f.label :image, "画像" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <%= f.attachment_field :image,class: "mb-3" %>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12">
           <%= f.label :department, "部署名" %>
@@ -53,7 +62,11 @@
         <div class="row">
           <div class="col-12">
             <%= f.label :enrollment_status, "在籍状況" %>
-            <%= f.select :enrollment_status, [['在籍中',true],['非在籍',false]], {}, class: "form-control mb-5" %>
+            <% if @employee.email != "guest@guest.com"%>
+              <%= f.select :enrollment_status, [['在籍中',true],['非在籍',false]], {}, class: "form-control mb-5" %>
+            <% else %>
+              <p>ゲストユーザーは編集権限がありません。</p>
+            <% end %>
           </div>
         </div>
       <% end %>

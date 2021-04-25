@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     post 'admin/guest_sign_in' => 'admin/sessions#guest_sign_in', as: 'guest_session'
   end
 
+  namespace :admin do
+    resources :companies, only: [:new, :create, :show, :edit, :update, :index]
+  end
+
   scope module: :public do
     root "homes#top"
     get    '/login' => 'sessions#new'
@@ -29,11 +33,8 @@ Rails.application.routes.draw do
     resources :replies, only: [:index]
     resources :searches, only: [:index]
     resources :groups do
+      get 'employee_list' => 'groups#employee_list'
       resource :group_relationships, only: [:new, :create, :destroy]
     end
-  end
-
-  namespace :admin do
-    resources :companies, only: [:new, :create, :show, :edit, :update, :index]
   end
 end

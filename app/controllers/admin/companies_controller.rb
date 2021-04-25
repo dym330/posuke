@@ -17,7 +17,7 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def index
-    @companys = Company.includes(:employees).all
+    @companys = Company.includes(:employees).all.page(params[:page]).per(10)
   end
 
   def show

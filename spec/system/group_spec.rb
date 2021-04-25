@@ -91,4 +91,18 @@ RSpec.describe "グループ機能のテスト", type: :system do
     expect(current_path).to eq(schedules_path)
     expect(page).to have_content("アクセスしたページには権限が無いため閲覧できません。")
   end
+
+  it "他従業員が作成した従業員一覧の閲覧はできない" do
+    create(:group, employee_id: Employee.second.id)
+    visit edit_group_path(Group.first.id)
+    expect(current_path).to eq(schedules_path)
+    expect(page).to have_content("アクセスしたページには権限が無いため閲覧できません。")
+  end
+
+  it "他従業員が作成したグループの従業員編集はできない" do
+    create(:group, employee_id: Employee.second.id)
+    visit group_employee_list_path(Group.first.id)
+    expect(current_path).to eq(schedules_path)
+    expect(page).to have_content("アクセスしたページには権限が無いため閲覧できません。")
+  end
 end

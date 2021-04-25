@@ -7,8 +7,7 @@ class Public::SchedulesController < ApplicationController
     @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
                          .where(employee_id: @employee_ids_in_current_company)
                          .order(id: :DESC)
-                         .page(params[:page])
-                         .per(10)
+                         .page(params[:page]).per(10)
   end
 
   def new

@@ -18,6 +18,7 @@ class Schedule < ApplicationRecord
       errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time
     end
   end
+
   #XX年XX月XX日　XX:XX　〜　(XX年XX月XX日)　XX:XX の形に変換
   def start_and_end_time
     if self.start_time.strftime("%y年%m月%d日") == self.end_time.strftime("%y年%m月%d日")
@@ -32,6 +33,7 @@ class Schedule < ApplicationRecord
     !!schedule_favorites.find{ |i| i[:employee_id] == employee.id }
   end
 
+  #検索機能：部分一致、前方一致、後方一致、完全一致
   def self.search(search, how_search)
     if how_search == "1"
       self.where(['title LIKE ?', "%#{search}%"])
@@ -43,4 +45,13 @@ class Schedule < ApplicationRecord
       self.where(['title LIKE ?', "#{search}"])
     end
   end
+
+  def css_name
+    if schedule_status == "質問中"
+      "question"
+    elsif schedule_status == "解決済質問"
+      "solution"
+    end
+  end
+
 end

@@ -88,11 +88,11 @@ class Public::EmployeesController < ApplicationController
       redirect_to schedules_path
     end
   end
-  
+
   # ログイン従業員にadmin権限が無い、もしくは自身ではない場合、ホームに返す
   def check_admin_or_current_employee_signed
-    @employee = Employee.find_by(id: params[:id]) ||
-                Employee.find_by(id: params[:employee_id])
+    employee_id = params[:id] || params[:employee_id]
+    @employee = Employee.find(employee_id)
     unless current_employee.admin == true || @employee == current_employee
       flash[:danger] = "アクセスしたページには権限が無いため閲覧できません。"
       redirect_to schedules_path

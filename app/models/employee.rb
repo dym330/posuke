@@ -12,7 +12,7 @@ class Employee < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :password, presence: true, length: { minimum: 6 },
                         allow_blank: true, on: :update
-  attachment :image
+  attachment :image, type: :image
 
   belongs_to :company
   has_many :schedules, dependent: :destroy
