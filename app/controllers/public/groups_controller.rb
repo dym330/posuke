@@ -1,6 +1,6 @@
 class Public::GroupsController < ApplicationController
-  before_action :check_current_employee, only: [:edit, :employee_list]
   before_action :check_employee_signed
+  before_action :check_current_employee, only: [:edit, :employee_list]
   before_action :sidebar_questions_count
   before_action :sidebar_replies_count
   def new
