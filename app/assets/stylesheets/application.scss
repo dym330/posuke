@@ -221,6 +221,10 @@ footer {
   border: 1px solid #00B0FF;
 }
 
+.hidden {
+  display: none;
+ }
+
 @media screen and (max-width: 480px) {
   .schedule-image {
     width: 50px;

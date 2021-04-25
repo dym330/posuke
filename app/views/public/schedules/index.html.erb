@@ -4,12 +4,9 @@
     <div class="title">
       <h2><i class="far fa-calendar-alt icon-color-blue"></i>スケジュール一覧</h2>
     </div>
-    <%= paginate @schedules %>
-    <div class="scroll-list jscroll">
-      <% @schedules.each do |schedule| %>
-        <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
-      <% end %>
+    <div id="scroll">
+      <%= render 'schedule_posts', schedules: @schedules, cuurent_employee: current_employee %>
+      <%= paginate @schedules, :theme=>'scroll' %>
     </div>
-    <%= paginate @schedules %>
   </div>
 </div>

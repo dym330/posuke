@@ -53,3 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
   }
 });
+
+window.addEventListener("scroll", () => {
+  const controller_name = document.getElementById('bodyid').dataset.controller;
+  const action_name = document.getElementById('bodyid').dataset.action;
+  const yPosition = window.pageYOffset
+  const Height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+  if (controller_name === 'schedules' && action_name === 'index') {
+    if (Height - yPosition == 0) {
+      const a = document.getElementById("")
+      Rails.fire(a, "next")
+    }
+  }
+})

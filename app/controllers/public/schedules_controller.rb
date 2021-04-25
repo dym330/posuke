@@ -8,6 +8,10 @@ class Public::SchedulesController < ApplicationController
                          .where(employee_id: @employee_ids_in_current_company)
                          .order(id: :DESC)
                          .page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new

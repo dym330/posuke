@@ -1,0 +1,2 @@
+$('#scroll').append("<%= j(render 'schedule_posts', schedules: @schedules, cuurent_employee: current_employee) %>")
+$('#scroll').append("<%= j(paginate @schedules, :theme=>'scroll') %>")
