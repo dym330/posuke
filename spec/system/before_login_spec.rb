@@ -23,6 +23,7 @@ RSpec.describe "ログイン前のテスト", type: :system do
       create(:employee)
       create(:group)
       create(:schedule)
+      create(:contact)
     end
     it "ホーム画面" do
       visit schedules_path
@@ -106,6 +107,14 @@ RSpec.describe "ログイン前のテスト", type: :system do
     end
     it "企業詳細画面" do
       visit admin_company_path(Group.first)
+      expect(current_path).to eq "/admin/sign_in"
+    end
+    it "問い合わせ一覧画面" do
+      visit admin_contacts_path
+      expect(current_path).to eq "/admin/sign_in"
+    end
+    it "問い合わせ詳細画面" do
+      visit admin_contact_path(Contact.first)
       expect(current_path).to eq "/admin/sign_in"
     end
   end

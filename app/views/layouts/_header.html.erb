@@ -12,6 +12,7 @@
           <% if admin_signed_in? %>
             <li class="nav-item"><%= link_to '企業登録', new_admin_company_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '企業一覧', admin_companies_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '問い合わせ一覧', admin_contacts_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, class: "nav-link", method: :delete %></li>
           <% elsif employee_signed_in? %>
             <% if admin_employee_login? %>

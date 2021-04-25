@@ -158,4 +158,15 @@ Group.create!(
   )
 end
 
+3.times do |i|
+  Contact.create!(
+    id: i + 1,
+    company_name: "テスト株式会社#{ i + 1 }",
+    responsible_name: Gimei.name.kanji,
+    email: Faker::Internet.email,
+    phone_number: "0123456789",
+    message: "興味があり、検討を考えております。",
+  )
+end
+
 
