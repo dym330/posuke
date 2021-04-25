@@ -163,7 +163,7 @@ end
     id: i + 1,
     company_name: "テスト株式会社#{ i + 1 }",
     responsible_name: Gimei.name.kanji,
-    email: Faker::Internet.email,
+    email: "test#{ i + 1 }@test.com",
     phone_number: "0123456789",
     message: "興味があり、検討を考えております。",
   )
