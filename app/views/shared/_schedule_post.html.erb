@@ -42,7 +42,7 @@
       <h4 class="schdule-text mb-2"><%= schedule.title %></h4>
       <p class="schdule-text"><%= simple_format(schedule.content) %></p>
       <% unless schedule.question.blank? %>
-        <div class="schedule-question-block mb-3 p-2">
+        <div class="schedule-question-block-<%= schedule.css_name %> mb-3 p-2">
           <u class="schdule-text"><%= schedule.schedule_status %></u>
           <p class="schdule-text"><%= simple_format(schedule.question) %></p>
         </div>

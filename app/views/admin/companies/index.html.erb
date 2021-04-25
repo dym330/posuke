@@ -1,7 +1,7 @@
 <div class="title">
   <h2><i class="far fa-building icon-color-blue"></i>企業一覧</h2>
 </div>
-
+<%= paginate @companys %>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -22,3 +22,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @companys %>

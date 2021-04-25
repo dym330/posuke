@@ -5,23 +5,27 @@
 <div class="row">
   <div class="col-sm-6 px-sm-0 mx-auto">
     <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+
         <div class="row">
           <div class="col-12">
             <%= f.label :email, "Eメール" %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3" %>
           </div>
         </div>
+
         <div class="row">
           <div class="col-12">
             <%= f.label :email, "パスワード" %>
             <%= f.password_field :password, autocomplete: "current-password", class: "form-control mb-5" %>
           </div>
         </div>
+
         <div class="row">
           <div class="col-12">
             <%= f.submit "ログイン", class: "btn-blue" %>
           </div>
         </div>
+        
     <% end %>
     <%= link_to "ゲストログインはこちら", guest_session_path ,method: :post, class: "btn-blue mt-5" %>
   </div>
