@@ -1,49 +1,40 @@
-<div class="home-img"></div>
+<div class="row">
+  <div class="col-12">
+    <%= image_tag 'top_title.png', class: "home-img-title" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 mt-3">
+    <p class="text-center" style="font-size:30px;">在宅勤務を導入したことにより、こんな事でお困りではないですか？</p>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="card h-100">
+      <%= image_tag 'top_card1.png', class: "bd-placeholder-img card-img-top" %>
+      <div class="card-body">
+        <p class="card-text">従業員同士が会うことが少なくなり、コミュニケーションが取れず、関係性の構築が難しい。</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="card h-100">
+      <%= image_tag 'top_card1.png', class: "bd-placeholder-img card-img-top" %>
+      <div class="card-body">
+        <p class="card-text">部下が現在業務についているのかが把握しにくい。 また、電話などで確認をする場合、時間がかかる上に、部下が過度な管理をされていると感じてしまう可能性がある。</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4 offset-sm-3 offset-md-0">
+    <div class="card h-100">
+      <%= image_tag 'top_card1.png', class: "bd-placeholder-img card-img-top" %>
+      <div class="card-body">
+        <p class="card-text">先輩社員が日々どのような動きをとっているかが把握できないため、キャリアプラン構築の妨げになっている。</p>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-sm-6 px-sm-0 mx-auto">
-    <p>導入を検討される方は下記問い合わせフォームまでご連絡ください</p>
-    <%= form_with model: @contact, local: true do |f| %>
-      <div class="row">
-        <div class="col-12">
-          <%= f.label :company_name, "企業名" %>
-          <%= render 'shared/error_message', object: f.object, column: :company_name %>
-          <%= f.text_field :company_name, class: "form-control mb-3" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <%= f.label :responsible_name, "担当者名" %>
-          <%= render 'shared/error_message', object: f.object, column: :responsible_name %>
-          <%= f.text_field :responsible_name, class: "form-control mb-3" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <%= f.label :email, "Eメール" %>
-          <%= render 'shared/error_message', object: f.object, column: :email %>
-          <%= f.email_field :email, class: "form-control mb-3" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <%= f.label :phone_number, "電話番号（ハイフン無し）" %>
-          <%= render 'shared/error_message', object: f.object, column: :phone_number %>
-          <%= f.text_field :phone_number, class: "form-control mb-3" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <%= f.label :message, "内容" %>
-          <%= render 'shared/error_message', object: f.object, column: :message %>
-          <%= f.text_area :message, class: "form-control mb-5" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <%= f.submit "送信", class: "btn-blue" %>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'contact_form', contact: @contact%>
   </div>
 </div>
 
