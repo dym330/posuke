@@ -33,19 +33,19 @@ RSpec.describe "ログイン前のテスト", type: :system do
       expect(current_path).to eq "/login"
     end
     it "スケジュール編集画面" do
-      visit new_schedule_path(1)
+      visit new_schedule_path(Schedule.first)
       expect(current_path).to eq "/login"
     end
     it "スケジュール詳細画面" do
-      visit schedule_path(1)
+      visit schedule_path(Schedule.first)
       expect(current_path).to eq "/login"
     end
     it "従業員パスワード変更画面" do
-      visit employee_password_path(1)
+      visit employee_password_path(Employee.first)
       expect(current_path).to eq "/login"
     end
     it "従業員カレンダー画面" do
-      visit employee_calendars_path(1)
+      visit employee_calendars_path(Employee.first)
       expect(current_path).to eq "/login"
     end
     it "従業員新規作成画面" do
@@ -53,11 +53,11 @@ RSpec.describe "ログイン前のテスト", type: :system do
       expect(current_path).to eq "/login"
     end
     it "従業員編集画面" do
-      visit edit_employee_path(1)
+      visit edit_employee_path(Employee.first)
       expect(current_path).to eq "/login"
     end
     it "従業員詳細画面" do
-      visit employee_path(1)
+      visit employee_path(Employee.first)
       expect(current_path).to eq "/login"
     end
     it "質問一覧画面" do
@@ -73,7 +73,7 @@ RSpec.describe "ログイン前のテスト", type: :system do
       expect(current_path).to eq "/login"
     end
     it "グループの従業員登録画面" do
-      visit new_group_group_relationships_path(1)
+      visit new_group_group_relationships_path(Group.first)
       expect(current_path).to eq "/login"
     end
     it "グループ一覧画面" do
@@ -85,11 +85,15 @@ RSpec.describe "ログイン前のテスト", type: :system do
       expect(current_path).to eq "/login"
     end
     it "グループ編集画面" do
-      visit edit_group_path(1)
+      visit edit_group_path(Group.first)
       expect(current_path).to eq "/login"
     end
     it "グループ詳細画面" do
-      visit group_path(1)
+      visit group_path(Group.first)
+      expect(current_path).to eq "/login"
+    end
+    it "グループ従業員リスト画面" do
+      visit group_employee_list_path(Group.first)
       expect(current_path).to eq "/login"
     end
     it "企業一覧画面" do
@@ -101,7 +105,7 @@ RSpec.describe "ログイン前のテスト", type: :system do
       expect(current_path).to eq "/admin/sign_in"
     end
     it "企業詳細画面" do
-      visit admin_company_path(1)
+      visit admin_company_path(Group.first)
       expect(current_path).to eq "/admin/sign_in"
     end
   end
