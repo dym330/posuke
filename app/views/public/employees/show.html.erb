@@ -9,6 +9,9 @@
         <div class="col-lg-3 col-md-4 col-5 text-center">
           <%= attachment_image_tag @employee, :image, format: "jpeg",
           fallback: "no_image.jpeg", class: "mypage-image" %> 
+          <p>
+            <%= link_to "", employee_calendars_path(@employee), class: "btn-blue far fa-calendar-alt icon-size-15" %>
+          </p>
         </div>
         <div class="col-lg-9 col-md-8 col-7 px-0">
           <div class="card-body">
@@ -18,7 +21,6 @@
             <p class="card-text"><%= "在籍状況：#{@employee.enrollment_status_display}" %></p>
             <% if @employee == current_employee || current_employee.admin %>
             <%= link_to "編集", edit_employee_path(@employee), class: "btn-blue" %>
-            <%= link_to "カレンダー", employee_calendars_path(@employee), class: "btn-blue ml-2" %>
             <% end %>
           </div>
         </div>

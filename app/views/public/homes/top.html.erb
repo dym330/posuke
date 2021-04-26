@@ -4,9 +4,11 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-12 mt-3">
-    <p class="text-center" style="font-size:30px;">在宅勤務を導入したことにより、こんな事でお困りではないですか？</p>
+  <div class="col-12 home-heading">
+    <h3 class="text-center">在宅勤務を導入したことにより、こんな事でお困りではないですか？</h3>
   </div>
+</div>
+<div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="card h-100">
       <%= image_tag 'top_card1.png', class: "bd-placeholder-img card-img-top" %>
@@ -17,7 +19,7 @@
   </div>
   <div class="col-sm-6 col-md-4">
     <div class="card h-100">
-      <%= image_tag 'top_card1.png', class: "bd-placeholder-img card-img-top" %>
+      <%= image_tag 'top_card2.png', class: "bd-placeholder-img card-img-top" %>
       <div class="card-body">
         <p class="card-text">部下が現在業務についているのかが把握しにくい。 また、電話などで確認をする場合、時間がかかる上に、部下が過度な管理をされていると感じてしまう可能性がある。</p>
       </div>
@@ -25,7 +27,7 @@
   </div>
   <div class="col-sm-6 col-md-4 offset-sm-3 offset-md-0">
     <div class="card h-100">
-      <%= image_tag 'top_card1.png', class: "bd-placeholder-img card-img-top" %>
+      <%= image_tag 'top_card3.png', class: "bd-placeholder-img card-img-top" %>
       <div class="card-body">
         <p class="card-text">先輩社員が日々どのような動きをとっているかが把握できないため、キャリアプラン構築の妨げになっている。</p>
       </div>
@@ -33,7 +35,41 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-6 px-sm-0 mx-auto">
+  <div class="col-12 home-heading">
+    <h3 class="text-center">ポスケを導入すると解決します！</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="card h-100">
+      <%= image_tag 'top_card4.png', class: "bd-placeholder-img card-img-top" %>
+      <div class="card-body">
+        <p class="card-text">スケジュールを投稿することで、離れていても何をしているかが分かりやすく、質問も投稿できコメントにて返信できる機能もあります！</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="card h-100">
+      <%= image_tag 'top_card5.png', class: "bd-placeholder-img card-img-top" %>
+      <div class="card-body">
+        <p class="card-text">投稿されたスケジュールは、カレンダー表示になるため、管理者様は部下が何を行っているかが一目瞭然！</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4 offset-sm-3 offset-md-0">
+    <div class="card h-100">
+      <%= image_tag 'top_card6.png', class: "bd-placeholder-img card-img-top" %>
+      <div class="card-body">
+        <p class="card-text">過去の投稿を検索できるため、同じような業務をした際の参考にもできます！また、先輩社員がどのような業務を行っていたかも把握できるため、将来のキャリアプランの構築もしやすくなります！！</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 home-heading">
+    <h3 class="text-center">導入を検討される方は下記問い合わせフォームまでご連絡ください</h3>
+  </div>
+  <div class="col-xl-6 col-md-8 col-sm-12 px-sm-0 mx-auto mt-3">
     <%= render 'public/homes/contact_form', contact: @contact%>
   </div>
 </div>

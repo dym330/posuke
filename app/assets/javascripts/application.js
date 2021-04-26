@@ -37,18 +37,41 @@ document.addEventListener('DOMContentLoaded', function() {
       businessHours: true,
       locale: 'ja',
       nowIndicator: true,
+      allDaySlot: false,
+      scrollTime: '08:00:00',
       businessHours: {
         daysOfWeek: [ 1, 2, 3, 4, 5 ],
         startTime: '8:00',
         endTime: '20:00',
       },
+      views: {
+        timeGridWeek: {
+          titleFormat: function (date) {
+            const startMonth = date.start.month + 1;
+            const endMonth = date.end.month + 1;
+            // 1週間のうちに月をまたぐかどうかの分岐処理
+            if (startMonth === endMonth) {
+              return startMonth + '月';
+            } else {
+              return startMonth + '月～' + endMonth + '月'; 
+            }
+          },
+          dayHeaderFormat: function (date) {
+            const day = date.date.day;
+            const weekNum = date.date.marker.getDay();
+            const week = ['(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)'][weekNum];
+            return day + ' ' + week;
+          }
+        }
+      },
+    
       buttonText: {
         today:    '今日',
         month:    '月',
         week:     '週',
         day:      '日',
         list:     'リスト'
-    },
+      },
     });
     calendar.render();
   }
