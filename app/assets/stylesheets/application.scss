@@ -51,6 +51,33 @@ footer {
   margin: 30px 0;
 }
 
+.home-heading{
+  margin:2em 0;
+  position: relative;
+  padding: 0.5em 1.5em;
+  border-top: solid 2px #00B0FF;
+  border-bottom: solid 2px #00B0FF;
+}
+.home-heading:before, .home-heading:after{
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 2px;
+  height: -webkit-calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-color: #00B0FF;
+}
+.home-heading:before {left: 10px;}
+.home-heading:after {right: 10px;}
+.home-heading h3 {
+  margin: 0; 
+  padding: 0;
+}
+
+.card {
+  background-color: #e1eefa;
+}
+
 .icon-color-blue {
   color: #00B0FF;
 }
