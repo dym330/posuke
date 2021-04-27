@@ -9,7 +9,9 @@ class Company < ApplicationRecord
   validates :address, presence: true, length: { in: 1..48 }
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
   validates :usage_status, inclusion: { in: [true, false] }
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true,
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness:true
 
   has_many :employees, dependent: :destroy
 
@@ -20,15 +22,12 @@ class Company < ApplicationRecord
 
   #企業登録時に、1人管理者権限を持った従業員を登録
   def employee_admin_create
-    employee = employees.new(name: self.responsible_name,
-                              email: self.email,
-                              password: 'password',
-                              department: '管理者',
-                              joining_date: Date.today,
-                              admin: true,
-                              enrollment_status: true)
-    unless employee.save
-      flash[:danger] = '従業員登録で予期せぬエラーが発生しました。'
-    end
+    employees.create(name: self.responsible_name,
+                     email: self.email,
+                     password: 'password',
+                     department: '管理者',
+                     joining_date: Date.today,
+                     admin: true,
+                     enrollment_status: true)
   end
 end

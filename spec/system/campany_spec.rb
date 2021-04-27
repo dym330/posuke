@@ -87,5 +87,19 @@ RSpec.describe "企業登録・編集のテスト", type: :system do
       expect(page).to have_content "企業名を入力してください"
       expect(Company.first.responsible_name).not_to eq("テスト次郎")
     end
+
+    it "従業員の中で使用されているEメールを、企業登録時に使用した場合の新規登録が失敗" do
+      create(:company)
+      create(:employee, email: "test@test.com")
+      visit new_admin_company_path
+      fill_in "company_company_name", with: "テスト株式会社"
+      fill_in "company_responsible_name", with: "テスト太郎"
+      fill_in "company_postcode", with: "1234567"
+      fill_in "company_address", with: "京都府宇治市平等院鳳凰堂1-1-1"
+      fill_in "company_email", with: "test@test.com"
+      fill_in "company_phone_number", with: "09012345678"
+      click_button "登録"
+      expect(page).to have_content "Eメールはすでに存在します"
+    end
   end
 end
