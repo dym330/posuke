@@ -28,14 +28,14 @@
         <div class="col-12">
           <%= f.label :content, "内容" %>
           <%= render 'shared/error_message', object: f.object, column: :content %>
-          <%= f.text_area :content, class: "form-control mb-3" %>
+          <%= f.text_area :content, class: "form-control mb-3", rows: "5" %>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <%= f.label :question, "質問" %>
           <%= render 'shared/error_message', object: f.object, column: :question %>
-          <%= f.text_area :question, class: "form-control mb-3" %>
+          <%= f.text_area :question, class: "form-control mb-3", rows: "5" %>
         </div>
       </div>
       <div class="row">

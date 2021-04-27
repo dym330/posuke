@@ -31,7 +31,7 @@
     <div class="col-12">
       <%= f.label :message, "内容" %>
       <%= render 'shared/error_message', object: f.object, column: :message %>
-      <%= f.text_area :message, class: "form-control mb-5" %>
+      <%= f.text_area :message, class: "form-control mb-5", rows: "5" %>
     </div>
   </div>
   <div class="row">
