@@ -36,6 +36,10 @@ class Public::EmployeesController < ApplicationController
 
   def update_password
     @employee = Employee.find(params[:employee_id])
+    unless @employee.authenticate(params[:employee][:current_password])
+      @employee.errors.add(:current_password, "が違います") 
+      return render 'password'
+    end
     if @employee.update(employee_params)
       if params[:employee][:password].blank?
         flash[:danger] = "パスワードが空白であったため更新はされませんでした。"
