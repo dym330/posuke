@@ -65,5 +65,9 @@ RSpec.describe Company, type: :model do
     it "企業名49文字" do
       expect(build(:company, address: "a" * 49)).to be_invalid
     end
+    it "Eメールの一意性" do
+      create(:company, email: "test@test.com")
+      expect(build(:company, email: "test@test.com")).to be_invalid
+    end
   end
 end

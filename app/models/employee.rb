@@ -1,5 +1,6 @@
 class Employee < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/
+  attr_accessor :current_password
   validates :name, presence: true, length: { in: 1..20 }
   validates :department, presence: true, length: { in: 1..20 }
   validates :joining_date, presence: true

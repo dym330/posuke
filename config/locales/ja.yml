@@ -33,13 +33,14 @@ ja:
         name: 名前
         email: Eメール
         password: パスワード
-        password confirmation: 確認用パスワード
+        password_confirmation: 確認用パスワード
         image: 画像
         image_id: 画像
         department: 部署名
         joining_date: 入社日
         admin: 管理権限
         enrollment_status: 在籍状況
+        current_password: 現在のパスワード
       group:
         name: 名前
 

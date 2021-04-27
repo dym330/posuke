@@ -57,6 +57,7 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
     it "従業員のパスワードの編集ができるか" do
       visit edit_employee_path(Employee.first)
       click_link "パスワードの変更はこちら"
+      fill_in "employee_current_password", with: "testtest"
       fill_in "employee_password", with: "changepass"
       fill_in "employee_password_confirmation", with: "changepass"
       click_button "保存"
@@ -75,8 +76,18 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
       expect(page).to have_content("名前を入力してください")
     end
   
-    it "不適切な内容（パスワード空欄）での従業員の編集" do
+    it "不適切な内容（現在のパスワードが違う）での従業員のパスワード編集" do
       visit employee_password_path(Employee.first)
+      fill_in "employee_current_password", with: "testaaaa"
+      fill_in "employee_password", with: "changepass"
+      fill_in "employee_password_confirmation", with: "changepass"
+      click_button "保存"
+      expect(page).to have_content("現在のパスワードが違います")
+    end
+
+    it "不適切な内容（パスワード空欄）での従業員のパスワード編集" do
+      visit employee_password_path(Employee.first)
+      fill_in "employee_current_password", with: "testtest"
       click_button "保存"
       expect(current_path).to eq(employee_path(Employee.first))
       expect(page).to have_content("パスワードが空白であったため更新はされませんでした")
@@ -84,5 +95,5 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
   end
 
 
-  
+
 end

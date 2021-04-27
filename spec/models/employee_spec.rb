@@ -60,5 +60,9 @@ RSpec.describe Employee, type: :model do
     it "名前が21文字" do
       expect(build(:employee, department: "a" * 21)).to be_invalid
     end
+    it "Eメールの一意性" do
+      create(:employee, email: "test@test.com")
+      expect(build(:employee, email: "test@test.com")).to be_invalid
+    end
   end
 end
