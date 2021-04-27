@@ -31,7 +31,8 @@ class Admin::CompaniesController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update(company_params)
-      redirect_to admin_company_path(@company), success: '更新完了しました。'
+      flash[:success] = '登録完了しました。'
+      redirect_to admin_company_path(@company)
     else
       render 'edit'
     end
