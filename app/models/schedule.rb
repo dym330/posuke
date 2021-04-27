@@ -15,7 +15,10 @@ class Schedule < ApplicationRecord
   # nilデータでは、>が使えないため、nil?を最初に確認している
   def start_end_check
     unless self.start_time.nil? && self.end_time.nil?
-      errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time
+      if self.start_time > self.end_time
+        errors.add(:start_time, "は終了時刻より早い時間を選択してください") if self.start_time > self.end_time
+        errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time
+      end
     end
   end
 
