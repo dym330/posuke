@@ -13,7 +13,7 @@
     <div class="new-comment">
       <%= form_with(model: @scheduleComment, url: schedule_schedule_comments_path(@schedule)) do |f| %>
         <%= f.text_area :comment, placeholder: "コメントをここに", class: "form-control", id: "comment_text_area" %>
-        <%= f.submit "送信" %>
+        <%= f.submit "送信", class: "btn-blue mt-2" %>
       <% end %>
     </div>
   </div>
