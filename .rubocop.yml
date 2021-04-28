@@ -1,0 +1,70 @@
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+# Exclude に設定したファイルは、チェック対象外になります。
+AllCops:
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 5.2
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+    - 'spec/**/*'
+    - 'config/**/*'
+
+# 日本語コメントを許可します。
+Style/AsciiComments:
+  Enabled: false
+
+# %i,%I以外も使用しても良い。
+Style/SymbolArray:
+  Enabled: false
+
+# Missing magic comment # frozen_string_literal: true. を無視
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Missing top-level class documentation comment. を無視
+Style/Documentation:
+  Enabled: false
+
+# Use nested module/class definitions instead of compact style. を無視
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# deviceのafter_sign_in_path_for(resource)対策
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'application_controller.rb'
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 22
+
+Style/SafeNavigation:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Style/RedundantInterpolation:
+  Enabled: false

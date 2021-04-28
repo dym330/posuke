@@ -1,5 +1,4 @@
 module Public::SessionsHelper
-
   # ログイン処理
   def log_in(employee)
     session[:employee_id] = employee.id
@@ -7,9 +6,9 @@ module Public::SessionsHelper
 
   # ログインしている従業員を取得する
   def current_employee
-    if session[:employee_id]
-      @current_employee ||= Employee.find_by(id: session[:employee_id])
-    end
+    return unless session[:employee_id]
+
+    @current_employee ||= Employee.find_by(id: session[:employee_id])
   end
 
   # 従業員がログインしているかどうかを真偽値で返す
@@ -19,10 +18,9 @@ module Public::SessionsHelper
 
   # ログインしていないユーザーをTOPページに返す
   def check_employee_signed
-    unless employee_signed_in?
-      flash[:danger] = "ログインしてください"
-      redirect_to login_path
-    end
+    return if employee_signed_in?
+
+    redirect_to login_path, flash: { danger: 'ログインしてください' }
   end
 
   # ログアウト処理

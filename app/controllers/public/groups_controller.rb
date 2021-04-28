@@ -3,6 +3,7 @@ class Public::GroupsController < ApplicationController
   before_action :check_current_employee, only: [:edit, :employee_list]
   before_action :sidebar_questions_count
   before_action :sidebar_replies_count
+
   def new
     @group = Group.new
   end
@@ -24,8 +25,7 @@ class Public::GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      flash[:success] = 'グループ名を編集しました。'
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), flash: { success: 'グループ名を編集しました。' }
     else
       render 'edit'
     end
@@ -39,8 +39,7 @@ class Public::GroupsController < ApplicationController
                          .order(created_at: :DESC)
   end
 
-  def edit
-  end
+  def edit; end
 
   def destroy
     Group.find(params[:id]).destroy
@@ -64,9 +63,8 @@ class Public::GroupsController < ApplicationController
   def check_current_employee
     group_id = params[:id] || params[:group_id]
     @group = Group.find(group_id)
-    unless @group.employee_id == current_employee.id
-      flash[:danger] = "アクセスしたページには権限が無いため閲覧できません。"
-      redirect_to schedules_path
-    end
+    return if @group.employee_id == current_employee.id
+
+    redirect_to schedules_path, flash: { danger: 'アクセスしたページには権限が無いため閲覧できません。' }
   end
 end

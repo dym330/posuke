@@ -14,15 +14,13 @@ class Public::SchedulesController < ApplicationController
     @schedule = Schedule.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
       question_status_check(@schedule)
-      flash[:success] = '予定を更新しました。'
-      redirect_to schedule_path(@schedule)
+      redirect_to schedule_path(@schedule), flash: { success: '予定を更新しました。' }
     else
       render 'edit'
     end
@@ -32,8 +30,7 @@ class Public::SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.employee_id = current_employee.id
     if @schedule.save
-      flash[:success] = '予定を登録しました。'
-      redirect_to schedules_path
+      redirect_to schedules_path, flash: { success: '予定を登録しました。' }
     else
       render 'new'
     end
@@ -41,7 +38,7 @@ class Public::SchedulesController < ApplicationController
 
   def show
     @schedule = Schedule.find(params[:id])
-    @scheduleComment = ScheduleComment.new
+    @schedule_comment = ScheduleComment.new
     if @schedule.comment_status == true && current_employee.id == @schedule.employee_id
       @schedule.update(comment_status: false)
     end
@@ -69,22 +66,21 @@ class Public::SchedulesController < ApplicationController
 
   def schedule_params
     params.require(:schedule).permit(:title, :start_time, :end_time,
-                                    :content, :question, :schedule_status)
+                                     :content, :question, :schedule_status)
   end
 
-  #スケジュールに質問が記載されていた場合ステータスを変更する
+  # スケジュールに質問が記載されていた場合ステータスを変更する
   def question_status_check(schedule)
-    unless schedule.question.blank?
-      schedule.update(schedule_status: 1) if schedule.schedule_status == '未質問'
-    end
+    return if schedule.question.blank?
+
+    schedule.update(schedule_status: 1) if schedule.schedule_status == '未質問'
   end
 
   # 編集ページに管理者、投稿者以外の人がアクセスした場合、スケジュール一覧に飛ばす
   def check_admin_or_current_employee
     @schedule = Schedule.find(params[:id])
-    unless @schedule.employee_id == current_employee.id || current_employee.admin
-      flash[:danger] = "アクセスしたページには権限が無いため閲覧できません。"
-      redirect_to schedules_path
-    end
+    return if @schedule.employee_id == current_employee.id || current_employee.admin
+
+    redirect_to schedules_path, flash: { danger: 'アクセスしたページには権限が無いため閲覧できません。' }
   end
 end

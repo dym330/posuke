@@ -6,22 +6,13 @@ class Public::SearchesController < ApplicationController
   def index
     employee_name_or_schedule_title = params[:option]
     how_search = params[:choice]
-    if employee_name_or_schedule_title == 'employee_name'
-      employees = Employee.search(params[:search], how_search)
-                          .where(company_id: current_employee.company_id)
-      @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
-                           .where(employee_id: employees.ids)
-                           .order(created_at: :DESC)
-                           .page(params[:page])
-                           .per(10)
-    elsif employee_name_or_schedule_title == 'schedule_title'
-      company = Company.find(current_employee.company.id)
-      @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
-                           .search(params[:search], how_search)
-                           .where(employee_id: company.employees.ids)
-                           .order(created_at: :DESC)
-                           .page(params[:page])
-                           .per(10)
+    case employee_name_or_schedule_title
+    when 'employee_name'
+      employees = Employee.search(params[:search], how_search, current_employee)
+      @schedules = Schedule.employees_search(employees.ids, params[:page])
+    when 'schedule_title'
+      company = Company.find(current_employee.company_id)
+      @schedules = Schedule.search(params[:search], how_search, company.employees.ids, params[:page])
     else
       @schedules = []
     end

@@ -25,9 +25,8 @@ class Public::GroupRelationshipsController < ApplicationController
 
   def check_current_employee
     @group = Group.find(params[:group_id])
-    unless @group.employee_id == current_employee.id
-      flash[:danger] = "アクセスしたページには権限が無いため閲覧できません。"
-      redirect_to schedules_path
-    end
+    return if @group.employee_id == current_employee.id
+
+    redirect_to schedules_path, flash: { danger: 'アクセスしたページには権限が無いため閲覧できません。' }
   end
 end

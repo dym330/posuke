@@ -5,6 +5,6 @@ class Group < ApplicationRecord
   has_many :employees, through: :group_relationships
 
   def relationship_by?(employee)
-    !!group_relationships.find{ |i| i[:employee_id] == employee.id }
+    !!group_relationships.find { |i| i[:employee_id] == employee.id }
   end
 end
