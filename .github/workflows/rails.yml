@@ -39,15 +39,15 @@ jobs:
       - name: run spec
         run: bundle exec rspec
   rubocop:
-  runs-on: ubuntu-latest
-  container:
-    image: ruby:2.5.7
-  steps:
-    - uses: actions/checkout@v2
-    - name: setup bundle
-      run: bundle install
-    - name: run rubocop
-      run: bundle exec rubocop
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.5.7
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup bundle
+        run: bundle install
+      - name: run rubocop
+        run: bundle exec rubocop
   build:
     needs: rspec
     runs-on: ubuntu-latest
