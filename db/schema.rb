@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_04_04_101352) do
 
-  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "company_name", null: false
     t.string "responsible_name", null: false
     t.string "postcode", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "company_name", null: false
     t.string "responsible_name", null: false
     t.string "email", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.string "phone_number", null: false
   end
 
-  create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "password_digest", default: "", null: false
     t.bigint "company_id"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.index ["company_id"], name: "index_employees_on_company_id"
   end
 
-  create_table "group_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "group_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "employee_id"
     t.bigint "group_id"
     t.datetime "created_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.index ["group_id"], name: "index_group_relationships_on_group_id"
   end
 
-  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "employee_id"
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.index ["employee_id"], name: "index_groups_on_employee_id"
   end
 
-  create_table "schedule_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "schedule_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "employee_id"
     t.bigint "schedule_id"
     t.text "comment", null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.index ["schedule_id"], name: "index_schedule_comments_on_schedule_id"
   end
 
-  create_table "schedule_favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "schedule_favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "employee_id"
     t.bigint "schedule_id"
     t.datetime "created_at", null: false
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_101352) do
     t.index ["schedule_id"], name: "index_schedule_favorites_on_schedule_id"
   end
 
-  create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "employee_id"
     t.string "title", null: false
     t.datetime "start_time", null: false

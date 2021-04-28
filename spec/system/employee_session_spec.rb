@@ -26,6 +26,7 @@ RSpec.describe "従業員のログイン、ログアウトテスト", type: :sys
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+
     it "パスワードが不適切(入力内容が違う)" do
       fill_in "session_email", with: Employee.first.email
       fill_in "session_password", with: "TESTTEST"
@@ -33,12 +34,14 @@ RSpec.describe "従業員のログイン、ログアウトテスト", type: :sys
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+
     it "Eメールが不適切(空欄)" do
       fill_in "session_password", with: "testtest"
       click_button "ログイン"
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+
     it "Eメールが不適切(入力内容が違う)" do
       fill_in "session_email", with: "not@test.com"
       fill_in "session_password", with: "testtest"
@@ -46,6 +49,7 @@ RSpec.describe "従業員のログイン、ログアウトテスト", type: :sys
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+
     it "非在籍者はログインができない" do
       create(:employee, enrollment_status: false, email: "status@false.com")
       fill_in "session_email", with: "status@false.com"

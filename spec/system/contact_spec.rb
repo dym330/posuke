@@ -17,6 +17,7 @@ RSpec.describe "問い合わせフォームのテスト", type: :system do
       expect(Contact.count).to eq(1)
       expect(Contact.first.responsible_name).to eq("テスト次郎")
     end
+
     it "メールが送信されているか" do
       expect(@mail.from.first).to eq("test@test.com")
       expect(@mail.to.first).to eq("test@test.com")
@@ -25,6 +26,7 @@ RSpec.describe "問い合わせフォームのテスト", type: :system do
       expect(@mail.body).to have_content "09011223344"
       expect(@mail.body).to have_content "検討します"
     end
+
     it "flashメッセージがでているかどうか" do
       expect(page).to have_content "問い合わせ内容を弊社担当へ送信いたしました。確認後、担当よりご連絡致します。"
     end
@@ -40,15 +42,17 @@ RSpec.describe "問い合わせフォームのテスト", type: :system do
       fill_in "contact_message", with: "検討します"
       click_button "送信"
     end
+
     it "メールは送信されていない" do
       expect(ActionMailer::Base.deliveries.count).to eq(0)
     end
+
     it "不足内容のエラー表示" do
       expect(page).to have_content "企業名を入力してください"
     end
+
     it "モデルに保存がされていない" do
       expect(Contact.count).to eq(0)
     end
   end
-
 end

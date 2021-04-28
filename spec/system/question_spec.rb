@@ -21,5 +21,4 @@ RSpec.describe "質問一覧機能のテスト", type: :system do
     expect(page).to have_content("質問内容A")
     expect(page).to have_content("質問内容C")
   end
-
 end

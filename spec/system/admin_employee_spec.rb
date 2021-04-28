@@ -10,6 +10,7 @@ RSpec.describe "admin権限を持つ従業員のテスト", type: :system do
     click_button "ログイン"
   end
   let(:employee) {create(:employee)}
+
   context "従業員関係のテスト" do
     it "他従業員の編集ページへ行ける" do
       visit employee_path(employee)
