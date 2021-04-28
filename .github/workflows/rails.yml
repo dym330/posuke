@@ -38,16 +38,16 @@ jobs:
           rails db:migrate RAILS_ENV=test
       - name: run spec
         run: bundle exec rspec
-  # rubocop:
-  # runs-on: ubuntu-latest
-  # container:
-  #   image: ruby:2.6.5
-  # steps:
-  #   - uses: actions/checkout@v2
-  #   - name: setup bundle
-  #     run: bundle install
-  #   - name: run rubocop
-  #     run: bundle exec rubocop
+  rubocop:
+  runs-on: ubuntu-latest
+  container:
+    image: ruby:2.5.7
+  steps:
+    - uses: actions/checkout@v2
+    - name: setup bundle
+      run: bundle install
+    - name: run rubocop
+      run: bundle exec rubocop
   build:
     needs: rspec
     runs-on: ubuntu-latest

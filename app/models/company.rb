@@ -11,22 +11,22 @@ class Company < ApplicationRecord
   validates :usage_status, inclusion: { in: [true, false] }
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
-                    uniqueness:true
+                    uniqueness: true
 
   has_many :employees, dependent: :destroy
 
-  #usage_statusのview表示
+  # usage_statusのview表示
   def usage_status_display
-    self.usage_status ? '利用中' : '利用停止'
+    usage_status ? '利用中' : '利用停止'
   end
 
-  #企業登録時に、1人管理者権限を持った従業員を登録
+  # 企業登録時に、1人管理者権限を持った従業員を登録
   def employee_admin_create
-    employees.create(name: self.responsible_name,
-                     email: self.email,
+    employees.create(name: responsible_name,
+                     email: email,
                      password: 'password',
                      department: '管理者',
-                     joining_date: Date.today,
+                     joining_date: Time.zone.today,
                      admin: true,
                      enrollment_status: true)
   end

@@ -6,16 +6,10 @@ class Admin::CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    #従業員の中に同じEメールが無いかチェックし、いたら登録をせずフォームに返す
-    if Employee.find_by(email: @company.email)
-      @company.errors.add(:email, "はすでに存在します")
-      return render 'new'
-    end
-    @company.usage_status = true
+    check_duplicate_email_in_employees and return
     if @company.save
       @company.employee_admin_create
-      flash[:success] = '登録完了しました。'
-      redirect_to admin_companies_path
+      redirect_to admin_companies_path, flash: { success: '登録完了しました。' }
     else
       render 'new'
     end
@@ -36,8 +30,7 @@ class Admin::CompaniesController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update(company_params)
-      flash[:success] = '登録完了しました。'
-      redirect_to admin_company_path(@company)
+      redirect_to admin_company_path(@company), flash: { success: '登録完了しました。' }
     else
       render 'edit'
     end
@@ -50,4 +43,11 @@ class Admin::CompaniesController < ApplicationController
                                     :address, :email, :phone_number, :usage_status)
   end
 
+  # 全従業員に今回登録する企業のEメールと同じEメールが無いか確認
+  def check_duplicate_email_in_employees
+    return unless Employee.find_by(email: @company.email)
+
+    @company.errors.add(:email, 'はすでに存在します')
+    render 'new'
+  end
 end
