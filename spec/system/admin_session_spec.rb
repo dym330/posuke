@@ -25,6 +25,7 @@ RSpec.describe "管理者のログイン、ログアウトテスト", type: :sys
       expect(current_path).to eq(new_admin_session_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+
     it "パスワードが不適切(入力内容が違う)" do
       fill_in "admin_email", with: "admin@admin.com"
       fill_in "admin_password", with: "PASSWORD"
@@ -32,12 +33,14 @@ RSpec.describe "管理者のログイン、ログアウトテスト", type: :sys
       expect(current_path).to eq(new_admin_session_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+
     it "Eメールが不適切(空欄)" do
       fill_in "admin_password", with: "password"
       click_button "ログイン"
       expect(current_path).to eq(new_admin_session_path)
       expect(page).to have_content("Eメールまたはパスワードが違います。")
     end
+
     it "Eメールが不適切(入力内容が違う)" do
       fill_in "admin_email", with: "admin1@admin.com"
       fill_in "admin_password", with: "password"

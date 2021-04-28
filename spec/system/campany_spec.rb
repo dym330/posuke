@@ -9,6 +9,7 @@ RSpec.describe "企業登録・編集のテスト", type: :system do
     click_button "ログイン"
   end
   let(:company) {create(:company)}
+
   context "企業登録" do
     it "適切な内容をフォームに入力" do
       expect(Company.count).to eq(0)

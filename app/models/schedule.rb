@@ -49,6 +49,7 @@ class Schedule < ApplicationRecord
     end
   end
 
+  # schedule_statusでcssを切り替えたいために設定
   def css_name
     if schedule_status == "質問中"
       "question"

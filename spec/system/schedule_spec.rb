@@ -10,6 +10,7 @@ RSpec.describe "スケジュール関係のテスト", type: :system do
       fill_in "session_password", with: "testtest"
       click_button "ログイン"
     end
+
     it "スケジュールの新規投稿" do
       expect(page).not_to have_content("書類作成")
       click_link "予定作成"
@@ -83,6 +84,7 @@ RSpec.describe "スケジュール関係のテスト", type: :system do
       expect(current_path).to eq(schedules_path)
     end
   end
+
   context "admin権限の従業員" do
     before do
       create(:company)
@@ -92,6 +94,7 @@ RSpec.describe "スケジュール関係のテスト", type: :system do
       fill_in "session_password", with: "testtest"
       click_button "ログイン"
     end
+
     it "投稿が自身ではないスケジュールでも編集、削除可能" do
       create(:employee)
       other_employee_schedule = create(:schedule, employee_id: Employee.last.id)
@@ -102,5 +105,4 @@ RSpec.describe "スケジュール関係のテスト", type: :system do
       expect(current_path).to eq(edit_schedule_path(other_employee_schedule))
     end
   end
-
 end

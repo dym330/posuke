@@ -10,6 +10,7 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
     click_button "ログイン"
   end
   let(:employee) {create(:employee)}
+
   context "従業員関係のテスト" do
     it "従業員の新規登録ページには行けない" do
       expect(page).not_to have_content("従業員新規登録")
@@ -17,7 +18,7 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
       expect(current_path).to eq(schedules_path)
       expect(page).to have_content("アクセスしたページには権限が無いため閲覧できません")
     end
-  
+
     it "他従業員の編集ページには行けない" do
       visit employee_path(Employee.first)
       expect(page).to have_link("編集")
@@ -27,7 +28,7 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
       expect(current_path).to eq(schedules_path)
       expect(page).to have_content("アクセスしたページには権限が無いため閲覧できません")
     end
-  
+
     it "従業員の編集ができるか" do
       expect(Employee.first.image_id).to eq("")
       visit edit_employee_path(Employee.first)
@@ -53,7 +54,7 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
       click_button "ログイン"
       expect(current_path).to eq(schedules_path)
     end
-  
+
     it "従業員のパスワードの編集ができるか" do
       visit edit_employee_path(Employee.first)
       click_link "パスワードの変更はこちら"
@@ -68,14 +69,14 @@ RSpec.describe "admin権限のない従業員のテスト", type: :system do
       click_button "ログイン"
       expect(current_path).to eq(schedules_path)
     end
-  
+
     it "不適切な内容（名前空欄）での従業員の編集" do
       visit edit_employee_path(Employee.first)
       fill_in "employee_name", with: ""
       click_button "登録"
       expect(page).to have_content("名前を入力してください")
     end
-  
+
     it "不適切な内容（現在のパスワードが違う）での従業員のパスワード編集" do
       visit employee_password_path(Employee.first)
       fill_in "employee_current_password", with: "testaaaa"
