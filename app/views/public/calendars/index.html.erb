@@ -8,3 +8,54 @@
   </div>
 </div>
 
+<%# 予定登録のモーダル %>
+
+<div class="modal fade" id="inputScheduleForm" tabindex="-1" role="dialog" aria-labelledby="inputScheduleFormLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="container">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inputScheduleFormLabel">予定作成</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_with model: @schedule, url: schedules_path do |f| %>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <%= f.label :title, "タイトル" %>
+                <%= render 'shared/error_message', object: f.object, column: :title %>
+                <%= f.text_field :title, autofocus: true, class: "form-control mb-3" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <%= f.label :start_time, "開始時間" %>
+                <%= render 'shared/error_message', object: f.object, column: :start_time %>
+                <%= f.datetime_field :start_time, class: "form-control mb-3",
+                                                  value: Time.current.strftime("%Y-%m-%dT%H:00:00") %>
+              </div>
+              <div class="col-6">
+                <%= f.label :end_time, "終了時間" %>
+                <%= render 'shared/error_message', object: f.object, column: :end_time %>
+                <%= f.datetime_field :end_time, class: "form-control mb-3",
+                                                value: (Time.current + 1.hour).strftime("%Y-%m-%dT%H:00:00") %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <%= f.label :content, "内容" %>
+                <%= render 'shared/error_message', object: f.object, column: :content %>
+                <%= f.text_area :content, class: "form-control mb-3", rows: "5" %>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-gray" data-dismiss="modal">閉じる</button>
+            <%= f.submit "投稿", class: "btn-blue" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

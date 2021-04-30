@@ -111,6 +111,27 @@ footer {
   color: white;
 }
 
+.btn-gray {
+  display: inline-block;
+  text-align: left;
+  border: 2px solid gray;
+  background-color: gray;
+  font-size: 16px;
+  color: gray;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+  color: #FFF;
+}
+
+.btn-gray:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: white;
+}
+
 .field_with_errors {
   display: contents;
 }

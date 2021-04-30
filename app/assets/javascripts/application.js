@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
+      selectable: true,
       initialView: 'dayGridMonth',
       events: '/employees/' + calendarEl.dataset.employeeId + '/calendars.json',
       navLinks: false,
@@ -64,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
       },
-    
       buttonText: {
         today:    '今日',
         month:    '月',
@@ -72,6 +72,35 @@ document.addEventListener('DOMContentLoaded', function() {
         day:      '日',
         list:     'リスト'
       },
+      dateClick: function(info) {
+        let start_time = info.dateStr;
+        let end_time = info.date;
+        end_time.setHours(end_time.getHours() +1);
+        if (info.dateStr.indexOf('+') != -1) {
+          const year = end_time.getFullYear();
+          let month = end_time.getMonth();
+          let day = end_time.getDate();
+          let hour = end_time.getHours();
+          month = ('0' + month).slice(-2);
+          day = ('0' + day).slice(-2);
+          hour = ('0' + hour).slice(-2);
+          start_time = start_time.substring(0, start_time.indexOf('+'));
+          end_time = year + '-' + month + '-' + day + 'T' + hour + ':00:00';
+        } else {
+          const now_date = new Date();
+          const later_date = new Date();
+          later_date.setHours(later_date.getHours() + 1);
+          start_time = info.dateStr + 'T' + now_date.getHours() + ':00:00';
+          end_time = info.dateStr + 'T' + later_date.getHours() + ':00:00';
+        }
+        // 予定投稿モーダルの初期値
+        $('#schedule_title').val('')
+        $('#schedule_start_time').val(start_time)
+        $('#schedule_end_time').val(end_time)
+        $('#schedule_content').val('')
+        // 予定投稿モーダルの表示
+        $('#inputScheduleForm').modal("show");
+      }
     });
     calendar.render();
   }
