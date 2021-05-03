@@ -4,7 +4,53 @@
     <div class="title">
       <h2><i class="far fa-calendar-alt icon-color-blue"></i><%= @schedule_employee.name %>さんのカレンダー</h2>
     </div>
-    <div id="calendar" data-employee-id="<%= @schedule_employee.id %>"></div>
+    <div id="calendar" data-employee-id="<%= @schedule_employee.id %>" data-current-employee-id="<%= current_employee.id %>"></div>
   </div>
 </div>
 
+<%# 予定登録のモーダル %>
+<div class="modal fade" id="inputScheduleForm" tabindex="-1" role="dialog" aria-labelledby="inputScheduleFormLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="container">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inputScheduleFormLabel">予定作成</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_with model: @schedule, url: schedules_path, local: true do |f| %>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <%= f.label :title, "タイトル" %>
+                <%= f.text_field :title, autofocus: true, class: "form-control mb-3" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <%= f.label :start_time, "開始時間" %>
+                <%= f.datetime_field :start_time, class: "form-control mb-3",
+                                                  value: Time.current.strftime("%Y-%m-%dT%H:00:00") %>
+              </div>
+              <div class="col-6">
+                <%= f.label :end_time, "終了時間" %>
+                <%= f.datetime_field :end_time, class: "form-control mb-3",
+                                                value: (Time.current + 1.hour).strftime("%Y-%m-%dT%H:00:00") %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <%= f.label :content, "内容" %>
+                <%= f.text_area :content, class: "form-control mb-3", rows: "5" %>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-gray" data-dismiss="modal">閉じる</button>
+            <%= f.submit "投稿", class: "btn-blue", id: "submit" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
