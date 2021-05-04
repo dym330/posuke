@@ -19,20 +19,23 @@
 //= require_tree .
 
 document.addEventListener('DOMContentLoaded', function() {
-  controller_name = document.getElementById('bodyid').dataset.controller;
-  action_name = document.getElementById('bodyid').dataset.action;
+  const controllerName = document.getElementById('bodyid').dataset.controller;
+  const actionName = document.getElementById('bodyid').dataset.action;
+  const calendarEl = document.getElementById('calendar');
 
   // calecdarsのindexページの時のみfullcalendarを適応させる
-  if (controller_name === 'calendars' && action_name === 'index') {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+  if (controllerName === 'calendars' && actionName === 'index') {
+    const calendarEmployeeId = calendarEl.dataset.employeeId
+    const currentEmployeeId = calendarEl.dataset.currentEmployeeId
+    const calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
+      selectable: true,
       initialView: 'dayGridMonth',
-      events: '/employees/' + calendarEl.dataset.employeeId + '/calendars.json',
+      events: '/employees/' + calendarEmployeeId + '/calendars.json',
       navLinks: false,
       businessHours: true,
       locale: 'ja',
@@ -64,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
       },
-    
       buttonText: {
         today:    '今日',
         month:    '月',
@@ -72,7 +74,50 @@ document.addEventListener('DOMContentLoaded', function() {
         day:      '日',
         list:     'リスト'
       },
+      dateClick: function(info) {
+        if (calendarEmployeeId == currentEmployeeId) {
+          let start_time = info.dateStr;
+          let end_time = info.date;
+          end_time.setHours(end_time.getHours() +1);
+          if (info.dateStr.indexOf('+') != -1) {
+            // "2021-04-30T14:00:00"の表記で保存
+            start_time = start_time.substring(0, start_time.indexOf('+'));
+            end_time = dateAndTimeShaping(end_time)
+          } else {
+            const nowDate = new Date();
+            const laterDate = new Date();
+            laterDate.setHours(laterDate.getHours() + 1);
+            // "2021-04-30T14:00:00"の表記で保存
+            start_time = info.dateStr + 'T' + ('0' + nowDate.getHours()).slice(-2) + ':00:00';
+            if (laterDate.getHours() == 0) {
+              end_time.setHours(end_time.getHours() +23);
+              end_time = dateAndTimeShaping(end_time)
+            } else {
+              end_time = info.dateStr + 'T' + laterDate.getHours() + ':00:00';
+            }
+          }
+          // 予定投稿モーダルの初期値
+          $('#schedule_title').val('')
+          $('#schedule_start_time').val(start_time)
+          $('#schedule_end_time').val(end_time)
+          $('#schedule_content').val('')
+          // 予定投稿モーダルの表示
+          $('#inputScheduleForm').modal("show");
+        }
+      }
     });
     calendar.render();
   }
 });
+
+function dateAndTimeShaping(dateAndTime) {
+  const year = dateAndTime.getFullYear();
+  let month = dateAndTime.getMonth() + 1;
+  let day = dateAndTime.getDate();
+  let hour = dateAndTime.getHours();
+  // '2'などを'02'の表記にする
+  month = ('0' + month).slice(-2);
+  day = ('0' + day).slice(-2);
+  hour = ('0' + hour).slice(-2);
+  return  year + '-' + month + '-' + day + 'T' + hour + ':00:00';
+}
