@@ -4,8 +4,10 @@
     <div class="title">
       <h2><i class="far fa-calendar-alt icon-color-blue"></i><%= @group.name%> スケジュール投稿一覧</h2>
     </div>
+    <%= paginate @schedules %>
     <% @schedules.each do |schedule| %>
       <%= render 'shared/schedule_post', schedule: schedule, cuurent_employee: current_employee %>
     <% end %>
+    <%= paginate @schedules %>
   </div>
 </div>
