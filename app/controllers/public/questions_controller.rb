@@ -6,8 +6,7 @@ class Public::QuestionsController < ApplicationController
     @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
                          .where(employee_id: @employee_ids_in_current_company)
                          .where(schedule_status: 1)
-                         .order(id: :DESC)
-                         .page(params[:page]).per(10)
+                         .recent(params[:page])
     @schedule_questions_count = @schedules.length
   end
 end

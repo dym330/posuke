@@ -6,7 +6,6 @@ class Public::RepliesController < ApplicationController
     @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
                          .where(employee_id: current_employee.id)
                          .where(comment_status: true)
-                         .order(created_at: :DESC)
-                         .page(params[:page]).per(10)
+                         .recent(params[:page])
   end
 end

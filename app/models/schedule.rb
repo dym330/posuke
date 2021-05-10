@@ -16,7 +16,7 @@ class Schedule < ApplicationRecord
 
   # nilデータでは、>が使えないため、nil?を最初に確認している
   def start_end_check
-    return if start_time.nil? && end_time.nil?
+    return if start_time.nil? || end_time.nil?
 
     return unless start_time > end_time
 

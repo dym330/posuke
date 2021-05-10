@@ -36,7 +36,7 @@ class Public::GroupsController < ApplicationController
                   .find(params[:id])
     @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
                          .where(employee_id: @group.employees.ids)
-                         .order(created_at: :DESC)
+                         .recent(params[:page])
   end
 
   def edit; end

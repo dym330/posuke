@@ -6,8 +6,7 @@ class Public::SchedulesController < ApplicationController
   def index
     @schedules = Schedule.includes(:employee, :schedule_comments, :schedule_favorites)
                          .where(employee_id: @employee_ids_in_current_company)
-                         .order(id: :DESC)
-                         .page(params[:page]).per(10)
+                         .recent(params[:page])
   end
 
   def new
