@@ -64,6 +64,7 @@ class Schedule < ApplicationRecord
     end
   end
 
+  # 渡された従業員IDに一致するスケジュールを返す
   def self.employees_search(employee_ids, page)
     includes(:employee, :schedule_comments, :schedule_favorites)
       .where(employee_id: employee_ids)
