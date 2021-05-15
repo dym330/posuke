@@ -13,7 +13,7 @@ RSpec.describe "スケジュール関係のテスト", type: :system do
 
     it "スケジュールの新規投稿" do
       expect(page).not_to have_content("書類作成")
-      click_link "予定作成"
+      click_link "スケジュール作成"
       fill_in "schedule_title", with: "書類作成"
       fill_in "schedule_start_time", with: Time.zone.local(2020, 1, 1, 10, 0, 0)
       fill_in "schedule_end_time", with: Time.zone.local(2020, 1, 1, 12, 0, 0)
