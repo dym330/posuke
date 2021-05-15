@@ -111,13 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function dateAndTimeShaping(dateAndTime) {
-  const year = dateAndTime.getFullYear();
-  let month = dateAndTime.getMonth() + 1;
-  let day = dateAndTime.getDate();
-  let hour = dateAndTime.getHours();
-  // '2'などを'02'の表記にする
-  month = ('0' + month).slice(-2);
-  day = ('0' + day).slice(-2);
-  hour = ('0' + hour).slice(-2);
-  return  year + '-' + month + '-' + day + 'T' + hour + ':00:00';
+  const year = String(dateAndTime.getFullYear());
+  const month = String(dateAndTime.getMonth() + 1).padStart(2, "0");
+  const day = String(dateAndTime.getDate()).padStart(2, "0");
+  const hour = String(dateAndTime.getHours()).padStart(2, "0");
+  return  `${year}-${month}-${day}T${hour}:00:00`;
 }
