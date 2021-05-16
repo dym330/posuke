@@ -8,7 +8,7 @@ class Public::QuestionsController < ApplicationController
                          .where(schedule_status: 1)
                          .recent(params[:page])
     @schedule_questions_count = Schedule.where(employee_id: @employee_ids_in_current_company)
-                                .where(schedule_status: 1)
-                                .count
+                                        .where(schedule_status: 1)
+                                        .count
   end
 end

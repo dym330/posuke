@@ -2,6 +2,7 @@
   <div class="sidebar">
     <ul class="nav flex-column">
       <li class="nav-item"><%= link_to 'ホーム', schedules_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to '使用方法', how_tos_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to 'カレンダー', employee_calendars_path(current_employee), class: "nav-link" %></li>
       <li class="nav-item">
         <%= link_to questions_path, class: "nav-link" do %>
@@ -23,41 +24,4 @@
       <li class="nav-item"><%= link_to 'グループ一覧', groups_path, class: "nav-link" %></li>
     </ul>
   </div>
-  <div class="text-center mt-2">
-    <button type="button" class="btn-blue" data-toggle="modal" data-target="#howToUseModal">
-        使用方法
-    </button>
-  </div>
 </nav>
-
-<%# モーダル部 %>
-<div class="modal fade" id="howToUseModal" tabindex="-1" role="dialog" aria-labelledby="howToUseModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="howToUseModalLabel">使用方法</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p><u>スケジュール作成</u></p>
-        <p>ヘッダー上部 ”スケジュール作成” もしくは、カレンダーの予定が無い部分をクリックすることで作成可能です。</p>
-        <p><u>質問投稿</u></p>
-        <p>一度投稿した予定を編集画面 <i class="fas fa-edit"></i> に移行することで、質問の投稿が可能になります。</p>
-        <p><u>質問状況の変更</u></p>
-        <p>
-          質問を投稿した予定には、質問中の状態になります。予定内以下アイコンをクリックすることで状態の変更が可能です。<br />
-          <i class="fas fa-question icon-color-red"></i>：質問中  <i class="fas fa-lightbulb icon-color-orange"></i>：解決済質問
-        </p>
-        <p><u>管理者にしかできないこと</u></p>
-        <p>
-          各従業員には、管理権限ステータスがあります。（管理者、非管理者）<br />
-          管理者には従業員の新規登録、各従業員の管理者権限の変更、他人の投稿を編集・削除が可能です。<br />
-          <b>ゲストユーザー様は "マイページ"⇒"編集"⇒"ゲストユーザーの管理者権限の変更" にて管理者権限の変更が特別に可能です。</b>
-        </p>
-
-      </div>
-    </div>
-  </div>
-</div>

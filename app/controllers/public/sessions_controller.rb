@@ -21,7 +21,7 @@ class Public::SessionsController < ApplicationController
   def guest_create
     employee = Employee.find_by(email: 'guest@guest.com')
     log_in(employee)
-    redirect_to schedules_path, flash: { success: 'ゲストユーザーとしてログインしました。' }
+    redirect_to how_tos_path, flash: { success: 'ゲストユーザーとしてログインしました。' }
   end
 
   private
