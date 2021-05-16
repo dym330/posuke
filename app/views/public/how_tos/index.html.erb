@@ -1,0 +1,90 @@
+<div class="row">
+  <%= render 'shared/sidebar' %>
+  <div class="col-sm-9">
+    <div class="title">
+      <h2><i class="fas fa-question icon-color-blue"></i>使用方法</h2>
+    </div>
+    <div>
+      <p><u>スケジュール作成</u></p>
+      <p>ヘッダー上部 ”スケジュール作成” もしくは、カレンダーの予定が無い部分をクリックすることで作成可能です。</p>
+      <p><u>質問投稿</u></p>
+      <p>一度投稿した予定を編集画面 <i class="fas fa-edit icon-color-blue"></i> に移行することで、質問の投稿が可能になります。</p>
+      <p><u>質問状況の変更</u></p>
+      <p>
+        質問を投稿した予定には、質問中の状態になります。予定内以下アイコンをクリックすることで状態の変更が可能です。<br />
+        <i class="fas fa-question icon-color-red"></i>：質問中  <i class="fas fa-lightbulb icon-color-orange"></i>：解決済質問
+      </p>
+      <p><u>管理者にしかできないこと</u></p>
+      <p>
+        各従業員には、管理権限ステータスがあります。（管理者、非管理者）<br />
+        管理者には従業員の新規登録、各従業員の管理者権限の変更、他人の投稿を編集・削除が可能です。<br />
+        <b style="color: red;">ゲストユーザー様は "マイページ"⇒"編集"⇒"ゲストユーザーの管理者権限の変更" にて管理者権限の変更が特別に可能です。</b>
+      </p>
+      <p><u>グループとは</u></p>
+      <p>従業員をグループに追加することで、追加した従業員の投稿一覧を確認できます。</p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="table-active" style="width:30%">リンク</th>
+            <th class="table-active">説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="align-middle">スケジュール作成</td>
+            <td class="align-middle">スケジュールの新規作成ができます。</td>
+          </tr>
+          <tr>
+            <td class="align-middle">マイページ</td>
+            <td class="align-middle">
+              自身の情報があります。編集画面、カレンダーへのリンクもあります。<br />
+              また、ユーザー画像をクリックすることでも、そのユーザーのマイページにいくことができます。
+            </td>
+          </tr>
+          <tr>
+            <td class="align-middle">ログアウト</td>
+            <td class="align-middle">ログアウトができます</td>
+          </tr>
+          <tr>
+            <td class="align-middle">従業員新規登録</td>
+            <td class="align-middle">
+              従業員新規登録ができます。<br />
+              ※管理者のみ
+            </td>
+          </tr>
+          <tr>
+            <td class="align-middle">ホーム</td>
+            <td class="align-middle">従業員の投稿一覧が表示されます。</td>
+          </tr>
+          <tr>
+            <td class="align-middle">使用方法</td>
+            <td class="align-middle">使用方法が確認できます。</td>
+          </tr>
+          <tr>
+            <td class="align-middle">カレンダー</td>
+            <td class="align-middle">カレンダーが確認できます。</td>
+          </tr>
+          <tr>
+            <td class="align-middle">質問一覧</td>
+            <td class="align-middle">質問中の投稿が一覧で表示されます。</td>
+          </tr>
+          <tr>
+            <td class="align-middle">返信一覧</td>
+            <td class="align-middle">
+              他人からコメントのついた自身の投稿が一覧表示されます。<br />
+              コメントを確認した投稿は一覧から外れます。
+            </td>
+          </tr>
+          <tr>
+            <td class="align-middle">検索</td>
+            <td class="align-middle">従業員名もしくはスケジュールのタイトルで、スケジュールの検索ができます。</td>
+          </tr>
+          <tr>
+            <td class="align-middle">グループ一覧</td>
+            <td class="align-middle">グループの一覧を表示できます。また、グループの新規作成などもできます。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

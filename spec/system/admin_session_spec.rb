@@ -14,7 +14,7 @@ RSpec.describe "管理者のログイン、ログアウトテスト", type: :sys
       expect(current_path).to eq(admin_companies_path)
       click_link "ログアウト"
       expect(current_path).to eq(root_path)
-      expect(page).to have_content("管理者ログイン")
+      expect(page).to have_content("管理ページログイン")
     end
   end
 

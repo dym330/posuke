@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :questions, only: [:index]
     resources :replies, only: [:index]
     resources :searches, only: [:index]
+    resources :how_tos, only: [:index]
     resources :groups do
       get 'employee_list' => 'groups#employee_list'
       resource :group_relationships, only: [:new, :create, :destroy]

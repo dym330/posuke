@@ -22,7 +22,7 @@
             <li class="nav-item"><%= link_to 'マイページ', employee_path(current_employee), class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログアウト', logout_path, class: "nav-link", method: :delete %></li>
           <% else %>
-            <li class="nav-item"><%= link_to '管理者ログイン', new_admin_session_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '管理ページログイン', new_admin_session_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '従業員ログイン', login_path, class: "nav-link" %></li>
           <% end %>
         </ul>
