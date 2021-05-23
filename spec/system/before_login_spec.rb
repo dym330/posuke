@@ -159,7 +159,7 @@ RSpec.describe "ログイン前のテスト", type: :system do
 
     it "管理者ログインを押すと管理者ログインページに遷移するか" do
       visit root_path
-      click_link "管理者ログイン"
+      click_link "管理ページログイン"
       expect(current_path).to eq "/admin/sign_in"
     end
 
