@@ -59,6 +59,7 @@ https://qiita.com/dym330/items/6e7e221ab3554bae2338
 - rspec(model,system)
 - dockerを使用しての環境構築（開発環境、本番環境共に使用）
 - CI/CD環境構築(Github Action)
+https://docs.google.com/spreadsheets/d/1CZeocd9OohJP3BxEOTOe1mt8rGu8NIjXJ4-Jm6df2Jk/edit#gid=0
 
 ## 設計書
 
