@@ -43,6 +43,8 @@ https://posuke.net
 https://qiita.com/dym330/items/97f3f321ce15519f5fd4
 - N+1問題への対応 <br>
 https://qiita.com/dym330/items/6e7e221ab3554bae2338
+- セキュリティ対策について学んだこと <br>
+https://qiita.com/dym330/items/d0b3993c35005d2a3c6b
 
 ## 開発環境
 - ruby 2.5.7
