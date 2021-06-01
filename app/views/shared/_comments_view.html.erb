@@ -16,7 +16,7 @@
       <div class="col-md-9 col-sm-8 col-9">
         <p class="schdule-text"><%= comment.created_at.strftime("%y年%m月%d日 %H:%M") %></p>
         <p class="schdule-text mb-2"><%= comment.employee.name %></p>
-        <p class="schdule-text"><%= simple_format(comment.comment) %></p>
+        <p class="schdule-text"><%= simple_format(h(comment.comment)) %></p>
       </div>
     </div>
   </div>
